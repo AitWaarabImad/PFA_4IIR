@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+  <button routerLink="/home" mat-button color="accent" >Home</button>
+  <button *ngIf="isLoggedin" routerLink="/profile" mat-raised-button color="accent" style="margin-right:10px" >Profile</button>
+
+  <span style="flex: auto" ></span>
+  <button *ngIf="!isLoggedin" routerLink="/login" mat-raised-button color="accent" style="margin-right:10px" >Login</button>
+  <button *ngIf="isLoggedin" routerLink="/login" (click)="logout()" mat-raised-button color="warn" style="margin-right:10px" >Logout</button>
+  <button *ngIf="!isLoggedin" routerLink="/register" mat-raised-button color="accent" >Register</button>
+  <button *ngIf="userRole=='Admin'" routerLink="/admin" mat-raised-button color="accent" >Admin</button>
+
+</mat-toolbar>
+
+<mat-nav-list>
+
+</mat-nav-list>
+
+
+

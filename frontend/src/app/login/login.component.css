@@ -1,0 +1,8 @@
+.mc{
+  background-color: #c9d2d2;
+  padding-top: 15px;
+}
+.mat-form-field{
+  display: flex;
+  justify-self: center;
+}

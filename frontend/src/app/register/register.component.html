@@ -1,0 +1,63 @@
+<div style="display: flex;justify-content: center;align-items: center;padding-top: 10px">
+  <mat-card [formGroup]="registerFormGroup" class="mc">
+    <mat-card-title style="text-align: center">Register</mat-card-title>
+    <mat-card-content class="mcc">
+
+      <mat-card-content>
+        <mat-form-field class="mat-form-field">
+          <mat-label>Nom</mat-label>
+          <input type="text"
+                 formControlName="nom"
+                 matInput placeholder="Nom" required>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-content>
+        <mat-form-field class="mat-form-field">
+          <mat-label>Prenom</mat-label>
+          <input type="text"
+                 formControlName="prenom"
+                 matInput placeholder="Prenom" required>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-content>
+        <mat-form-field class="mat-form-field">
+          <mat-label>Email</mat-label>
+          <input type="email"
+                 formControlName="email"
+                 matInput placeholder="Email" required>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-content>
+        <mat-form-field class="mat-form-field">
+          <mat-label>Username</mat-label>
+          <input type="text"
+                 formControlName="username"
+                 matInput placeholder="Username" required>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-content>
+        <mat-form-field style="padding-right: 20px">
+          <mat-label>Password</mat-label>
+          <input type="password"
+                 formControlName="password"
+                 matInput placeholder="Password" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Confirm Password</mat-label>
+          <input type="password"
+                 formControlName="password2"
+                 matInput placeholder="Password"  required>
+        </mat-form-field>
+      </mat-card-content>
+
+    </mat-card-content>
+    <mat-card-actions style="align-self: center">
+      <button (click)="register()" mat-raised-button color="accent">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<router-outlet></router-outlet>
