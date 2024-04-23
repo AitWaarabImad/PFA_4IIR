@@ -21,6 +21,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {MatNavList} from "@angular/material/list";
 import { AdminComponent } from './admin/admin.component';
+import {MatCell, MatHeaderCell, MatHeaderRow, MatRow, MatTable, MatTableModule} from "@angular/material/table";
+import {MatOption} from "@angular/material/autocomplete";
+import {MatSelect} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -50,7 +53,14 @@ import { AdminComponent } from './admin/admin.component';
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
-    MatNavList
+    MatNavList,
+    MatHeaderCell,
+    MatCell,
+    MatHeaderRow,
+    MatRow,
+    MatTableModule,
+    MatOption,
+    MatSelect
   ],
   providers: [
     provideAnimationsAsync()

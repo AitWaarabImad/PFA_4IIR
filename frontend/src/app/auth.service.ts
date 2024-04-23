@@ -24,27 +24,36 @@ export class AuthService {
     this.isLoggedin = true;
     return this.http.post(`${this.baseUrl}/login`,user)
   }
-  setLoggedInUser(user: any) {
+  public setLoggedInUser(user: any) {
     this.loggedInUserSubject.next(user);
     // You can also store user data in local storage here for persistence
   }
 
-  getLoggedInUser(): any {
+  public getLoggedInUser(): any {
     if(this.loggedInUserSubject.value == null)
     {
       this.isLoggedin = false;
     }
     return this.loggedInUserSubject.value;
   }
-  getRoleuser():any {
+  public getRoleuser():any {
     const user = this.getLoggedInUser()
     return user ? user.role : '';
   }
 
-  logout() {
+  public logout() {
     this.loggedInUserSubject.next(null);
 
     // You might also want to clear user data from local storage here
+  }
+
+  public getAllUsers():any
+  {
+    return this.http.get(`${this.baseUrl}/all`);
+  }
+  public UpdateRole(user : any):any
+  {
+    return this.http.put(`${this.baseUrl}/update`,user);
   }
 
 }

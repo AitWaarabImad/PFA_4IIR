@@ -3,6 +3,7 @@ package com.example.demo.services;
 import com.example.demo.DTO.UserDto;
 import com.example.demo.entities.User;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface IUserService {
@@ -10,5 +11,6 @@ public interface IUserService {
     public UserDto loginUser(UserDto userDto) ;
     Optional<User> findByUsername(String username);
     public void updateUser(UserDto userDto);
+    public UserDto UpdateInfoUser(UserDto userDto);
 
 }

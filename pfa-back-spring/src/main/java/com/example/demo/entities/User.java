@@ -1,9 +1,6 @@
 package com.example.demo.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,7 +20,8 @@ public class User {
     String prenom;
     String email;
     String password;
-    Role role = Role.Invite;
+    @Enumerated(EnumType.STRING)
+    Role role = Role.Admin;
     Boolean isAuthenticated;
 
     Long ID_calendrier;

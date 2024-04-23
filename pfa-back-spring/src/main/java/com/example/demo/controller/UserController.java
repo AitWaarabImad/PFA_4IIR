@@ -3,6 +3,8 @@
 
     import com.example.demo.DTO.UserDto;
     import com.example.demo.entities.User;
+    import com.example.demo.mapper.UserMapper;
+    import com.example.demo.repository.IUserRepository;
     import lombok.NoArgsConstructor;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.http.ResponseEntity;
@@ -12,6 +14,8 @@
     import lombok.AllArgsConstructor;
     import org.springframework.web.bind.annotation.*;
 
+    import java.util.List;
+
     @CrossOrigin(origins = "http://localhost:4200")
     @RestController
     @AllArgsConstructor
@@ -19,6 +23,8 @@
 
 
         private UserService userService;
+        private final IUserRepository userRepository;
+        private final UserMapper userMapper;
 
         @PostMapping("/login")
         public UserDto login(@RequestBody UserDto userDto)
@@ -39,6 +45,22 @@
         public void logout(@RequestBody UserDto userDto)
         {
             userService.updateUser(userDto);
+        }
+
+        @GetMapping("/all")
+        public List<UserDto> getAllUsers() {
+
+            List<User> users = userRepository.findAll();
+
+            return userMapper.convertEntitiesToDtoList(users);
+        }
+        @PutMapping("/update")
+        public UserDto updateUser(@RequestBody UserDto userDto) {
+            try {
+                return userService.UpdateInfoUser(userDto);
+            } catch (RuntimeException ex) {
+                return null;
+            }
         }
 
     }

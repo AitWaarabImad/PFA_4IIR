@@ -6,6 +6,9 @@ import com.example.demo.entities.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class UserMapper {
     ModelMapper modelMapper = new ModelMapper();
@@ -42,10 +45,17 @@ public User convertDtoToEntity(UserDto userDto){
         return user;
 }
 
-    public UserDto convertEntitytoDto(User user){
+    public UserDto convertEntityToDto(User user) {
         UserDto userDto = new UserDto();
-        modelMapper.map(user,userDto);
+        modelMapper.map(user, userDto);
         return userDto;
+    }
+
+    // Method to convert a list of User entities to a list of UserDto
+    public List<UserDto> convertEntitiesToDtoList(List<User> users) {
+        return users.stream()
+                .map(this::convertEntityToDto)
+                .collect(Collectors.toList());
     }
 
 }

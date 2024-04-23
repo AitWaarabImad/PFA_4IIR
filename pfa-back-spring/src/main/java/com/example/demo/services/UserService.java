@@ -38,8 +38,7 @@ public class UserService implements  IUserService{
         if (userEntityOptional.isPresent()) {
             User userEntity = userEntityOptional.get();
             if(BCrypt.checkpw(userDto.getPassword(), userEntity.getPassword())){
-            UserDto userDto1 = userMapper.convertEntitytoDto(userEntity);
-            return userDto1;}
+                return userMapper.convertEntityToDto(userEntity);}
         }
         return null;
     }
@@ -54,6 +53,26 @@ public class UserService implements  IUserService{
         User user = iUserRepository.findByUsername(userDto.getUsername()).get();
         user.setIsAuthenticated(false);
         iUserRepository.save(user);
+    }
+
+    public UserDto UpdateInfoUser(UserDto userDto) {
+        Optional<User> userOptional = iUserRepository.findByUsername(userDto.getUsername());
+        if (!userOptional.isPresent()) {
+            throw new RuntimeException("User not found.");
+        }
+
+        User user = userOptional.get();
+
+
+        user.setRole(userDto.getRole());
+        user.setNom(userDto.getNom());
+        user.setPrenom(userDto.getPrenom());
+
+
+        User updatedUser = iUserRepository.save(user);
+
+
+        return userMapper.convertEntityToDto(updatedUser);
     }
 
 }

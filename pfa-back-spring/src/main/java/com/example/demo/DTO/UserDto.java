@@ -1,6 +1,8 @@
 package com.example.demo.DTO;
 
 import com.example.demo.entities.Role;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.*;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
