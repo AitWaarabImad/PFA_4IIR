@@ -6,6 +6,7 @@ import {AppComponent} from "./app.component";
 import {HomeComponent} from "./home/home.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {AdminComponent} from "./admin/admin.component";
+import {AuthGuard} from "./guards/auth.guard";
 
 
 const routes: Routes = [
@@ -13,7 +14,7 @@ const routes: Routes = [
   {path:'login' , component: LoginComponent},
   {path:"register" , component : RegisterComponent},
   {path:"profile" , component : ProfileComponent},
-  {path:"admin" , component : AdminComponent},
+  {path:"admin" , component : AdminComponent, canActivate: [AuthGuard]},
   {path:"home" , component : HomeComponent}
 ];
 

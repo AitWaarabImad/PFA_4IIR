@@ -24,6 +24,7 @@ import { AdminComponent } from './admin/admin.component';
 import {MatCell, MatHeaderCell, MatHeaderRow, MatRow, MatTable, MatTableModule} from "@angular/material/table";
 import {MatOption} from "@angular/material/autocomplete";
 import {MatSelect} from "@angular/material/select";
+import {AuthGuard} from "./guards/auth.guard";
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import {MatSelect} from "@angular/material/select";
     MatSelect
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),AuthGuard
   ],
   bootstrap: [AppComponent]
 })
