@@ -63,7 +63,8 @@ import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
         MatTableModule,
         MatOption,
         MatSelect,
-        MatPaginatorModule
+        MatPaginatorModule,
+      MatPaginator
     ],
   providers: [
     provideAnimationsAsync(),AuthGuard
