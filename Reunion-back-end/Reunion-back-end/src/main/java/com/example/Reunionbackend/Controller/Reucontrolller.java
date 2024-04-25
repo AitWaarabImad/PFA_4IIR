@@ -12,20 +12,18 @@ import java.util.Optional;
 public class Reucontrolller {
     @Autowired
     private iReunionServices iReu;
-@PostMapping("createR")
+@PostMapping("createReunion")
     public ReuDto creeReu(@RequestBody ReuDto reuDto){
         return iReu.creeReunion(reuDto);
-
-
     }
-@GetMapping("reu/{id}")
+@GetMapping("reunion/{id}")
     public ReuDto getReuId(@PathVariable Long id){
 
 
     return iReu.getReunionById(id);
 
     }
-    @PutMapping("updtae/{id}")
+    @PutMapping("update/{id}")
     public Optional<Reunion> update(@PathVariable Long id, @RequestBody ReuDto  reuDto){
 
     return iReu.updateReunion(reuDto,id);

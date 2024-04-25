@@ -19,13 +19,19 @@ import {MatIcon, MatIconModule} from "@angular/material/icon";
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import {MatNavList} from "@angular/material/list";
+import {MatList, MatListItem, MatListItemMeta, MatListModule, MatNavList} from "@angular/material/list";
 import { AdminComponent } from './admin/admin.component';
 import {MatCell, MatHeaderCell, MatHeaderRow, MatRow, MatTable, MatTableModule} from "@angular/material/table";
 import {MatOption} from "@angular/material/autocomplete";
 import {MatSelect} from "@angular/material/select";
 import {AuthGuard} from "./guards/auth.guard";
 import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
+import { ReunionComponent } from './reunion/reunion.component';
+import { CreerReunionComponent } from './creer-reunion/creer-reunion.component';
+import {MatButtonToggleGroup} from "@angular/material/button-toggle";
+import {MatMenu, MatMenuModule, MatMenuTrigger} from "@angular/material/menu";
+import {MatDrawer, MatDrawerContainer, MatDrawerContent} from "@angular/material/sidenav";
+import {CdkListbox} from "@angular/cdk/listbox";
 
 @NgModule({
   declarations: [
@@ -35,37 +41,47 @@ import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
     HomeComponent,
     ProfileComponent,
     NavbarComponent,
-    AdminComponent
+    AdminComponent,
+    ReunionComponent,
+    CreerReunionComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        MatSlideToggleModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatLabel,
-        MatFormFieldModule,
-        MatInputModule,
-        MatCardModule,
-        MatCardTitle,
-        MatCardHeader,
-        MatCardContent,
-        FlexLayoutModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatIconModule,
-        MatNavList,
-        MatHeaderCell,
-        MatCell,
-        MatHeaderRow,
-        MatRow,
-        MatTableModule,
-        MatOption,
-        MatSelect,
-        MatPaginatorModule,
-      MatPaginator
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MatSlideToggleModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatLabel,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatCardTitle,
+    MatCardHeader,
+    MatCardContent,
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatNavList,
+    MatHeaderCell,
+    MatCell,
+    MatHeaderRow,
+    MatRow,
+    MatTableModule,
+    MatOption,
+    MatSelect,
+    MatPaginatorModule,
+    MatPaginator,
+    MatButtonToggleGroup,
+    MatMenuModule,
+    MatMenuTrigger,
+    MatDrawerContainer,
+    MatListModule,
+    MatListItem,
+    MatDrawerContent,
+    MatDrawer
+  ],
   providers: [
     provideAnimationsAsync(),AuthGuard
   ],
