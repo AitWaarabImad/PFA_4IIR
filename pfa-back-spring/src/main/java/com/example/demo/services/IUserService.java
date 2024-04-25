@@ -13,4 +13,7 @@ public interface IUserService {
     public void updateUser(UserDto userDto);
     public UserDto UpdateInfoUser(UserDto userDto);
 
+    public UserDto findById(Long id);
+
+
 }

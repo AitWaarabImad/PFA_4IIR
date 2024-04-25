@@ -23,7 +23,8 @@ export class AdminComponent implements OnInit{
   getUsers()
   {
     this.authService.getAllUsers().subscribe(
-        (users: User[]) => {this.users = users}
+        (users: User[]) => {this.users = users;
+          console.log('Users:', this.users);}
     )
   }
   editUser(user: User) {

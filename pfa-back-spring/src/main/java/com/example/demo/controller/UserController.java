@@ -5,6 +5,7 @@
     import com.example.demo.entities.User;
     import com.example.demo.mapper.UserMapper;
     import com.example.demo.repository.IUserRepository;
+    import com.example.demo.services.IUserService;
     import lombok.NoArgsConstructor;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.http.ResponseEntity;
@@ -25,6 +26,7 @@
         private UserService userService;
         private final IUserRepository userRepository;
         private final UserMapper userMapper;
+        private final IUserService iUserService;
 
         @PostMapping("/login")
         public UserDto login(@RequestBody UserDto userDto)
@@ -50,9 +52,12 @@
         @GetMapping("/all")
         public List<UserDto> getAllUsers() {
 
-            List<User> users = userRepository.findAll();
+            return userService.getAllUserDtos();
+        }
 
-            return userMapper.convertEntitiesToDtoList(users);
+        @GetMapping("/getId/{id}")
+        public UserDto getByiD(@PathVariable Long id){
+            return iUserService.findById(id);
         }
         @PutMapping("/update")
         public UserDto updateUser(@RequestBody UserDto userDto) {
@@ -62,5 +67,6 @@
                 return null;
             }
         }
+
 
     }

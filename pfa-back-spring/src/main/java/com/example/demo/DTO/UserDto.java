@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @AllArgsConstructor
 public class UserDto {
 
+    Long ID_user;
     String nom;
     String prenom ;
     String username;

@@ -14,14 +14,14 @@ import org.mindrot.jbcrypt.BCrypt;
 @Builder
 public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long ID;
+    Long ID_user;
     String nom;
     String username;
     String prenom;
     String email;
     String password;
     @Enumerated(EnumType.STRING)
-    Role role = Role.Admin;
+    Role role = Role.Invite;
     Boolean isAuthenticated;
 
     Long ID_calendrier;

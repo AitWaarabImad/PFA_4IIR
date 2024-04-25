@@ -7,8 +7,12 @@ import jakarta.annotation.Nullable;
 import org.mindrot.jbcrypt.BCrypt;
 import com.example.demo.repository.IUserRepository;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import com.example.demo.mapper.UserMapper;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,6 +20,7 @@ import java.util.Optional;
 public class UserService implements  IUserService{
     private IUserRepository iUserRepository;
     private UserMapper userMapper;
+    private ModelMapper modelMapper;
 
     @Override
     public User registerUser(UserDto userDto) {
@@ -68,11 +73,39 @@ public class UserService implements  IUserService{
         user.setNom(userDto.getNom());
         user.setPrenom(userDto.getPrenom());
 
-
         User updatedUser = iUserRepository.save(user);
 
 
         return userMapper.convertEntityToDto(updatedUser);
     }
+    @Override
+    public UserDto findById(Long id) {
+        UserDto userDto;
+        Optional<User> user = iUserRepository.findById(id);
+        System.out.println(user);
+        userDto = modelMapper.map(user,UserDto.class);
+        System.out.println(userDto);
+        return userDto;
+    }
+
+    public List<UserDto> getAllUserDtos() {
+        List<User> users = iUserRepository.findAll();
+        List<UserDto> userDtos = new ArrayList<>();
+        for (User user : users) {
+            UserDto userDto = new UserDto();
+            userDto.setID_user(user.getID_user());
+            userDto.setUsername(user.getUsername());
+            userDto.setEmail(user.getEmail());
+            userDto.setRole(user.getRole());
+            userDto.setNom(user.getNom());
+            userDto.setPrenom(user.getPrenom());
+            userDto.setIsAuthenticated(user.getIsAuthenticated());
+            // Continue avec tous les attributs que tu veux mapper...
+
+            userDtos.add(userDto);
+        }
+        return userDtos;
+    }
+
 
 }
