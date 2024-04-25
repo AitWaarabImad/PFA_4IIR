@@ -25,6 +25,7 @@ import {MatCell, MatHeaderCell, MatHeaderRow, MatRow, MatTable, MatTableModule} 
 import {MatOption} from "@angular/material/autocomplete";
 import {MatSelect} from "@angular/material/select";
 import {AuthGuard} from "./guards/auth.guard";
+import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -36,33 +37,34 @@ import {AuthGuard} from "./guards/auth.guard";
     NavbarComponent,
     AdminComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MatSlideToggleModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatLabel,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatCardTitle,
-    MatCardHeader,
-    MatCardContent,
-    FlexLayoutModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    MatNavList,
-    MatHeaderCell,
-    MatCell,
-    MatHeaderRow,
-    MatRow,
-    MatTableModule,
-    MatOption,
-    MatSelect
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MatSlideToggleModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatLabel,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCardModule,
+        MatCardTitle,
+        MatCardHeader,
+        MatCardContent,
+        FlexLayoutModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        MatNavList,
+        MatHeaderCell,
+        MatCell,
+        MatHeaderRow,
+        MatRow,
+        MatTableModule,
+        MatOption,
+        MatSelect,
+        MatPaginatorModule
+    ],
   providers: [
     provideAnimationsAsync(),AuthGuard
   ],

@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from "../auth.service";
 import {User} from "../user";
 import {MatDialog} from "@angular/material/dialog";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-admin',
@@ -12,6 +13,7 @@ export class AdminComponent implements OnInit{
   users: User[] =[];
   displayedColumns: string[] = ['name', 'email', 'role', 'actions'];
   roles: string[] = ['Admin', 'Invite', 'Organisateur', 'Rapporteur'];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
 
   constructor(private authService : AuthService,private dialog: MatDialog) {
@@ -23,9 +25,10 @@ export class AdminComponent implements OnInit{
   getUsers()
   {
     this.authService.getAllUsers().subscribe(
-        (users: User[]) => {this.users = users;
-          console.log('Users:', this.users);}
-    )
+        users => {this.users = users;this.users.paginator = this.paginator;
+          }
+    );
+
   }
   editUser(user: User) {
     this.authService.UpdateRole(user).subscribe(
