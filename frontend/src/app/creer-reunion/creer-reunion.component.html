@@ -1,1 +1,26 @@
-<p>creer-reunion works!</p>
+<!-- creer-reunion.component.html -->
+<div>
+  <h2>Créer une réunion</h2>
+  <form [formGroup]="reunionForm" (ngSubmit)="creerReunion()">
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Date et heure de début" formControlName="debutR">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker2" placeholder="Date et heure de fin" formControlName="finReu">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Description" formControlName="description"></textarea>
+    </mat-form-field>
+
+    <!-- Ajoutez d'autres champs de formulaire ici -->
+
+    <button mat-raised-button type="submit">Créer Réunion</button>
+  </form>
+</div>
+

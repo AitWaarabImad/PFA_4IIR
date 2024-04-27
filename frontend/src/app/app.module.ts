@@ -32,6 +32,19 @@ import {MatButtonToggleGroup} from "@angular/material/button-toggle";
 import {MatMenu, MatMenuModule, MatMenuTrigger} from "@angular/material/menu";
 import {MatDrawer, MatDrawerContainer, MatDrawerContent} from "@angular/material/sidenav";
 import {CdkListbox} from "@angular/cdk/listbox";
+import {
+  MatDatepicker,
+  MatDatepickerInput, MatDatepickerModule,
+  MatDatepickerToggle,
+  MatDatepickerToggleIcon
+} from "@angular/material/datepicker";
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule
+} from "@angular-material-components/datetime-picker";
+import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -80,10 +93,16 @@ import {CdkListbox} from "@angular/cdk/listbox";
     MatListModule,
     MatListItem,
     MatDrawerContent,
-    MatDrawer
+    MatDrawer,
+    MatDatepickerToggle,
+    MatDatepickerModule,
+    MatDatepickerInput,
+    MatNativeDateModule,
+    BrowserAnimationsModule
+
   ],
   providers: [
-    provideAnimationsAsync(),AuthGuard
+    provideAnimationsAsync(),AuthGuard,{provide: MAT_DATE_LOCALE, useValue: 'fr-FR'}
   ],
   bootstrap: [AppComponent]
 })

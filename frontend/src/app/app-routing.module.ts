@@ -18,7 +18,7 @@ const routes: Routes = [
   {path:"profile" , component : ProfileComponent},
   {path:"admin" , component : AdminComponent, canActivate: [AuthGuard]},
   {path:"home" , component : HomeComponent},
-  {path:"CreerReunion" , component : CreerReunionComponent},
+  {path:"CreerReunion" , component :CreerReunionComponent},
   {path:"Reunion" , component : ReunionComponent}
 ];
 
