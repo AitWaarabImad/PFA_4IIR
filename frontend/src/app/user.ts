@@ -1,7 +1,7 @@
 export class User {
 
 
-  ID_user : any;
+  id_user!: any;
   isauthenticated : boolean = false;
   nom! : string;
   username! : string;

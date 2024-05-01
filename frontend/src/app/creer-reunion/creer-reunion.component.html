@@ -1,26 +1,23 @@
-<!-- creer-reunion.component.html -->
-<div>
+<div class="container">
   <h2>Créer une réunion</h2>
-  <form [formGroup]="reunionForm" (ngSubmit)="creerReunion()">
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Date et heure de début" formControlName="debutR">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+  <div class="form-group">
+    <label><i class="fas fa-calendar-alt"></i> Date et heure de début:</label>
+    <input [(ngModel)]="debutR" type="datetime-local" class="form-control" (change)="onChange(debutR)" [min]="TodayDate">
+  </div>
+  <div class="form-group">
+    <label><i class="fas fa-calendar-alt"></i> Date et heure de fin:</label>
+    <input [(ngModel)]="finReu" type="datetime-local" class="form-control">
+  </div>
+  <div class="form-group">
+    <label><i class="fas fa-file-alt"></i> Description:</label>
+    <textarea [(ngModel)]="description" class="form-control" placeholder="Description"></textarea>
+  </div>
+  <div class="form-group">
+    <label><i class="fas fa-file-alt"></i> Rapport:</label>
+    <textarea [(ngModel)]="rapport" class="form-control" placeholder="Rapport"></textarea>
+  </div>
 
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker2" placeholder="Date et heure de fin" formControlName="finReu">
-      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-      <mat-datepicker #picker2></mat-datepicker>
-    </mat-form-field>
+  <!-- Add other form fields here -->
 
-    <mat-form-field>
-      <textarea matInput placeholder="Description" formControlName="description"></textarea>
-    </mat-form-field>
-
-    <!-- Ajoutez d'autres champs de formulaire ici -->
-
-    <button mat-raised-button type="submit">Créer Réunion</button>
-  </form>
+  <button mat-raised-button class="btn-create" (click)="creerReunion()"><i class="fas fa-plus-circle"></i> Créer Réunion</button>
 </div>
-

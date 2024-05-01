@@ -45,6 +45,9 @@ import {
 } from "@angular-material-components/datetime-picker";
 import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { CalendrierComponent } from './calendrier/calendrier.component';
+import {CalendarModule, DateAdapter} from "angular-calendar";
+import {adapterFactory} from "angular-calendar/date-adapters/date-fns";
 
 @NgModule({
   declarations: [
@@ -56,7 +59,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     NavbarComponent,
     AdminComponent,
     ReunionComponent,
-    CreerReunionComponent
+    CreerReunionComponent,
+    CalendrierComponent
   ],
   imports: [
     BrowserModule,
@@ -98,11 +102,18 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MatDatepickerModule,
     MatDatepickerInput,
     MatNativeDateModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    NgxMatDatetimePickerModule,
+
+
 
   ],
   providers: [
-    provideAnimationsAsync(),AuthGuard,{provide: MAT_DATE_LOCALE, useValue: 'fr-FR'}
+    provideAnimationsAsync(),AuthGuard,MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })
