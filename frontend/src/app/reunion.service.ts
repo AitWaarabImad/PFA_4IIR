@@ -16,4 +16,8 @@ export class ReunionService {
   {
     return this.http.post(`${this.baseUrl}/createReunion`,reunion)
   }
+  getReunionbyuserid(id_user:any):Observable<any>
+  {
+    return this.http.get(`${this.baseUrl}/Mesreunions`,id_user)
+  }
 }
