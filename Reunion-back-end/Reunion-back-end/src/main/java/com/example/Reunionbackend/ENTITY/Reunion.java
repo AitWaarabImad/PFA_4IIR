@@ -20,26 +20,17 @@ import java.util.Date;
 public class Reunion {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long ID_Re;
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 5805285a143217a0583255c371c3f136692ba3d2
     Date debutR;
 
     Date FinReu;
   String description;
     Long ID_user;
-<<<<<<< HEAD
+
     Long ID_rapporteur ;
 
 
 
-=======
-    //List des user qui seront invites
-    //Le rapporteur designer pour la reunion
-    //le rapport
->>>>>>> 5805285a143217a0583255c371c3f136692ba3d2
 
 
 }
