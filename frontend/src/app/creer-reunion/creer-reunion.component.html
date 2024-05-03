@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>Créer une réunion</h2>
+  <div class="form-group">
+    <label><i class="fas fa-calendar-alt"></i> Date et heure de début:</label>
+    <input [(ngModel)]="debutR" type="datetime-local" class="form-control" (change)="onChange(debutR)" [min]="TodayDate">
+  </div>
+  <div class="form-group">
+    <label><i class="fas fa-calendar-alt"></i> Date et heure de fin:</label>
+    <input [(ngModel)]="finReu" type="datetime-local" class="form-control">
+  </div>
+  <div class="form-group">
+    <label><i class="fas fa-file-alt"></i> Description:</label>
+    <textarea [(ngModel)]="description" class="form-control" placeholder="Description"></textarea>
+  </div>
+  <div class="form-group">
+    <label><i class="fas fa-file-alt"></i> Rapport:</label>
+    <textarea [(ngModel)]="rapport" class="form-control" placeholder="Rapport"></textarea>
+  </div>
+
+  <!-- Add other form fields here -->
+
+  <button mat-raised-button class="btn-create" (click)="creerReunion()"><i class="fas fa-plus-circle"></i> Créer Réunion</button>
+</div>

@@ -19,12 +19,35 @@ import {MatIcon, MatIconModule} from "@angular/material/icon";
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import {MatNavList} from "@angular/material/list";
+import {MatList, MatListItem, MatListItemMeta, MatListModule, MatNavList} from "@angular/material/list";
 import { AdminComponent } from './admin/admin.component';
 import {MatCell, MatHeaderCell, MatHeaderRow, MatRow, MatTable, MatTableModule} from "@angular/material/table";
 import {MatOption} from "@angular/material/autocomplete";
 import {MatSelect} from "@angular/material/select";
 import {AuthGuard} from "./guards/auth.guard";
+import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
+import { ReunionComponent } from './reunion/reunion.component';
+import { CreerReunionComponent } from './creer-reunion/creer-reunion.component';
+import {MatButtonToggleGroup} from "@angular/material/button-toggle";
+import {MatMenu, MatMenuModule, MatMenuTrigger} from "@angular/material/menu";
+import {MatDrawer, MatDrawerContainer, MatDrawerContent} from "@angular/material/sidenav";
+import {CdkListbox} from "@angular/cdk/listbox";
+import {
+  MatDatepicker,
+  MatDatepickerInput, MatDatepickerModule,
+  MatDatepickerToggle,
+  MatDatepickerToggleIcon
+} from "@angular/material/datepicker";
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule
+} from "@angular-material-components/datetime-picker";
+import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { CalendrierComponent } from './calendrier/calendrier.component';
+import {CalendarModule, DateAdapter} from "angular-calendar";
+import {adapterFactory} from "angular-calendar/date-adapters/date-fns";
 
 @NgModule({
   declarations: [
@@ -34,7 +57,10 @@ import {AuthGuard} from "./guards/auth.guard";
     HomeComponent,
     ProfileComponent,
     NavbarComponent,
-    AdminComponent
+    AdminComponent,
+    ReunionComponent,
+    CreerReunionComponent,
+    CalendrierComponent
   ],
   imports: [
     BrowserModule,
@@ -61,10 +87,33 @@ import {AuthGuard} from "./guards/auth.guard";
     MatRow,
     MatTableModule,
     MatOption,
-    MatSelect
+    MatSelect,
+    MatPaginatorModule,
+    MatPaginator,
+    MatButtonToggleGroup,
+    MatMenuModule,
+    MatMenuTrigger,
+    MatDrawerContainer,
+    MatListModule,
+    MatListItem,
+    MatDrawerContent,
+    MatDrawer,
+    MatDatepickerToggle,
+    MatDatepickerModule,
+    MatDatepickerInput,
+    MatNativeDateModule,
+    BrowserAnimationsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    NgxMatDatetimePickerModule,
+
+
+
   ],
   providers: [
-    provideAnimationsAsync(),AuthGuard
+    provideAnimationsAsync(),AuthGuard,MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })

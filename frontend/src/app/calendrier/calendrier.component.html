@@ -1,0 +1,21 @@
+<div id="calendar-container">
+  <div id="calendar-buttons">
+    <div id="cal-date-nav-buttons">
+      <button id="previous" class="calendar-button" mwlCalendarPreviousView [(viewDate)]="viewDate" [view]="view">Previous</button>
+      <button id="today" class="calendar-button" mwlCalendarToday [(viewDate)]="viewDate">Today</button>
+      <button id="next" class="calendar-button" mwlCalendarNextView [(viewDate)]="viewDate" [view]="view">Next</button>
+    </div>
+    <div id="cal-date-field">{{viewDate | calendarDate:(view + 'ViewTitle') : 'en'}}</div>
+    <div>
+      <button id="month" class="calendar-view-button" (click)="setView(CalendarView.Month)">Month</button>
+      <button id="week" class="calendar-view-button" (click)="setView(CalendarView.Week)">Week</button>
+      <button id="day" class="calendar-view-button" (click)="setView(CalendarView.Day)">Day</button>
+    </div>
+  </div>
+  <span [ngSwitch]="view">
+    <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate"></mwl-calendar-week-view>
+    <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate"></mwl-calendar-month-view>
+    <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate"></mwl-calendar-day-view>
+  </span>
+</div>
+

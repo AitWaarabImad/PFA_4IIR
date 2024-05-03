@@ -1,18 +1,63 @@
 <mat-toolbar color="primary">
-  <button routerLink="/home" mat-button color="accent" >Home</button>
-  <button *ngIf="isLoggedin" routerLink="/profile" mat-raised-button color="accent" style="margin-right:10px" >Profile</button>
+
+  <button  routerLink="/" mat-button color="accent" style="margin-right:10px" ><mat-icon>home</mat-icon>Home</button>
+  <button  routerLink="/Calendrier" mat-raised-button color="accent" >Calendrier</button>
+
+
+  <button *ngIf="isLoggedin" [matMenuTriggerFor]="reunion" mat-button color="accent" style="margin-right:10px" >
+    <mat-icon iconPositionEnd>keyboard_arrow_down</mat-icon>
+    Mes reunion</button>
+  <mat-menu #reunion>
+    <mat-list-item>
+      <button *ngIf="isLoggedin" routerLink="/Reunion" mat-button color="accent" style="margin-right:10px" >Mes reunion</button>
+    </mat-list-item>
+    <mat-list-item>
+      <button *ngIf="isLoggedin && (userRole=='Organisateur'||'Admin')"  routerLink="/CreerReunion" mat-button color="accent" style="margin-right:10px" >Creer reunion</button>
+    </mat-list-item>
+  </mat-menu>
+
+
+
+  <button  [matMenuTriggerFor]="reunio1" mat-button color="accent" style="margin-right:10px" >
+    <mat-icon iconPositionEnd>keyboard_arrow_down</mat-icon>
+    Mes reunion</button>
+  <mat-menu #reunio1>
+    <mat-list-item>
+      <button  routerLink="/Reunion" mat-button color="accent" style="margin-right:10px" >Mes reunion</button>
+    </mat-list-item>
+    <mat-list-item>
+      <button  routerLink="/CreerReunion" mat-button color="accent" style="margin-right:10px" >Creer reunion</button>
+    </mat-list-item>
+  </mat-menu>
+
+
 
   <span style="flex: auto" ></span>
+  <button *ngIf="userRole=='Admin'" routerLink="/admin" mat-button color="white" >Admin</button>
+  <button *ngIf="isLoggedin" [matMenuTriggerFor]="profile" mat-button color="white" >{{name}}<mat-icon color="white">account_box</mat-icon></button>
+  <mat-menu #profile>
+    <mat-list-item>
+      <button *ngIf="isLoggedin" routerLink="/profile" mat-button color="accent" style="margin-right:10px" >Profile</button>
+      </mat-list-item>
+    <mat-list-item>
+      <button  routerLink="/login" (click)="logout()" mat-raised-button color="warn" style="margin-right:10px" ><mat-icon>logout</mat-icon>Logout</button>
+      </mat-list-item>
+
+
+  </mat-menu>
+
+
+
   <button *ngIf="!isLoggedin" routerLink="/login" mat-raised-button color="accent" style="margin-right:10px" >Login</button>
-  <button *ngIf="isLoggedin" routerLink="/login" (click)="logout()" mat-raised-button color="warn" style="margin-right:10px" >Logout</button>
   <button *ngIf="!isLoggedin" routerLink="/register" mat-raised-button color="accent" >Register</button>
-  <button *ngIf="userRole=='Admin'" routerLink="/admin" mat-raised-button color="accent" >Admin</button>
+
 
 </mat-toolbar>
 
-<mat-nav-list>
 
-</mat-nav-list>
+
+
+
 
 
 

@@ -1,7 +1,15 @@
+<!-- admin.component.html -->
+
 <p>admin works!</p>
 <div class="container">
   <h2>Users List</h2>
-  <mat-table [dataSource]="users">
+  <div class="search-bar">
+    <mat-icon>search</mat-icon>
+    <mat-form-field appearance="outline">
+      <input matInput (input)="applyFilter($event)" placeholder="Search by name">
+    </mat-form-field>
+  </div>
+  <mat-table [dataSource]="dataSource" class="users-table">
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <mat-header-cell class="mat-header-cell" *matHeaderCellDef>Name</mat-header-cell>
@@ -39,4 +47,5 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
 </div>

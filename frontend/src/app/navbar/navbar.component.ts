@@ -13,10 +13,12 @@ export class NavbarComponent implements OnInit{
 
   userRole! : string;
   isLoggedin : boolean =false;
+  name! : string;
   ngOnInit() {
     this.authService.loggedInUser$.subscribe(user => {
       this.isLoggedin = !!user; // If user exists, set to true, otherwise false
       this.userRole = this.authService.getRoleuser();
+      this.name = user.username
     });
 
   }

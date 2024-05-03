@@ -7,6 +7,9 @@ import {HomeComponent} from "./home/home.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {AdminComponent} from "./admin/admin.component";
 import {AuthGuard} from "./guards/auth.guard";
+import {CreerReunionComponent} from "./creer-reunion/creer-reunion.component";
+import {ReunionComponent} from "./reunion/reunion.component";
+import {CalendrierComponent} from "./calendrier/calendrier.component";
 
 
 const routes: Routes = [
@@ -15,7 +18,11 @@ const routes: Routes = [
   {path:"register" , component : RegisterComponent},
   {path:"profile" , component : ProfileComponent},
   {path:"admin" , component : AdminComponent, canActivate: [AuthGuard]},
-  {path:"home" , component : HomeComponent}
+  {path:"home" , component : HomeComponent},
+  {path:"CreerReunion" , component :CreerReunionComponent},
+  {path:"Reunion" , component : ReunionComponent},
+  {path:"Calendrier" , component : CalendrierComponent},
+
 ];
 
 @NgModule({
