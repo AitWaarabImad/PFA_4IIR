@@ -29,6 +29,7 @@ public class User {
 
 
 
+
     public void setPassword(String password) {
         String salt = BCrypt.gensalt();
 

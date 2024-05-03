@@ -11,6 +11,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -36,7 +37,7 @@ public class ReunionServices implements  iReunionServices {
 
         Optional<Reunion> reunion = reunionRepo.findById(id);
         Reunion reunion1 = reunion.orElseThrow(() -> new RuntimeException("Reunion not found"));
-
+        System.out.println(reunion1);
         Long userId = Long.valueOf(reunion1.getID_user());
 
 
@@ -72,6 +73,9 @@ public class ReunionServices implements  iReunionServices {
         return reunion1;
     }
 
+
+
+
     public ReuDto getReunion() {
 
         List<Reunion> reunion = reunionRepo.findAll();
@@ -95,6 +99,18 @@ public class ReunionServices implements  iReunionServices {
         }
         return null;
     }
+    public List<ReuDto> findReunionsByUserId(Long ID_user) {
+        // Récupère toutes les réunions de la base de données
+        List<Reunion> allReunions = reunionRepo.findAll();
+
+        // Filtre les réunions en fonction de l'ID_user et les convertit en ReuDto
+        return allReunions.stream()
+                .filter(reunion -> reunion.getID_user().equals(ID_user))
+                .map(reunion -> modelMapper.map(reunion, ReuDto.class))
+                .collect(Collectors.toList());
+    }
+
+
 
 
 

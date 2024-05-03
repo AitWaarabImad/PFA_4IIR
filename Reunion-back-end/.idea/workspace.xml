@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59e59570-f811-4d51-bd8f-cb916d79ac8b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reunion-back-end/src/main/java/com/example/Reunionbackend/Services/ReunionServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/Reunion-back-end/src/main/java/com/example/Reunionbackend/Services/ReunionServices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pfa-back-spring/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../pfa-back-spring/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +32,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;jaafar&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/jaafar/Desktop/PFA_4IIR/Reunion-back-end&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -55,6 +53,11 @@
       <updated>1714054163027</updated>
       <workItem from="1714054163906" duration="797000" />
       <workItem from="1714054979264" duration="19000" />
+      <workItem from="1714056208940" duration="9000" />
+      <workItem from="1714056358709" duration="62000" />
+      <workItem from="1714056454026" duration="10000" />
+      <workItem from="1714734880850" duration="18000" />
+      <workItem from="1714734960161" duration="17000" />
     </task>
     <servers />
   </component>
