@@ -1,11 +1,16 @@
 <div class="container">
   <mat-card *ngFor="let reunion of reunions" class="card">
     <mat-card-header>
-      <mat-card-title>{{ reunion.id_user }}</mat-card-title>
+      <div class="header">
+        <mat-card-title>{{ 'Réunion ' + (reunion.id_Re) }}</mat-card-title>
+      </div>
     </mat-card-header>
     <mat-card-content>
-      {{ reunion.description }}
-    </mat-card-content>
+      <div class="subtitle">Organisée par {{ reunion.id_user }}</div>
+      <p>{{ reunion.description }}</p>
+      <p>Rapporteur : {{ reunion.id_rapporteur }}</p>
+      </mat-card-content>
   </mat-card>
 </div>
+
 

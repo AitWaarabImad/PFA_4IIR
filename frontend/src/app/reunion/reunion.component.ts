@@ -11,13 +11,25 @@ import {Reunion} from "../reunion";
 export class ReunionComponent implements OnInit{
 
   reunions: Reunion[] = [];
+  rapporteur!:any;
+  organisateur!:any;
 
   constructor(private authService:AuthService,private reunionService:ReunionService) {
   }
   ngOnInit() {
     this.reunionService.getReunionbyuserid(this.authService.getLoggedInUser().id_user).subscribe(reunions => {
       this.reunions = reunions;
+
     });
   }
-
+  getnamebyid(id:any){
+    return this.authService.getnameById(id).subscribe(
+      (username:string) => {
+        return username;
+      },
+      (error: any) => {
+        console.error('une erreur',error) ;
+      }
+    )
+  }
 }
