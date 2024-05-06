@@ -61,9 +61,9 @@
         }
 
         @GetMapping("/getnameId/{id}")
-        public String getnameByiD(@PathVariable Long id){
+        public UserDto getnameByiD(@PathVariable Long id){
             UserDto userDto = iUserService.findById(id);
-            return userDto.getNom() + " " + userDto.getPrenom();
+            return userDto;
         }
         @PutMapping("/update")
         public UserDto updateUser(@RequestBody UserDto userDto) {

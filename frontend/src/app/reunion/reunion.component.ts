@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../auth.service";
 import {ReunionService} from "../reunion.service";
 import {Reunion} from "../reunion";
+import {User} from "../user";
 
 @Component({
   selector: 'app-reunion',
@@ -22,14 +23,8 @@ export class ReunionComponent implements OnInit{
 
     });
   }
+
   getnamebyid(id:any){
-    return this.authService.getnameById(id).subscribe(
-      (username:string) => {
-        return username;
-      },
-      (error: any) => {
-        console.error('une erreur',error) ;
-      }
-    )
+    return this.authService.getnameById(id).subscribe()
   }
 }

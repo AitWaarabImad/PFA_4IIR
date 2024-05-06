@@ -58,7 +58,7 @@ export class AuthService {
 
   public getnameById(id:any):any
   {
-    return this.http.get(`${this.baseUrl}/getnameId/${id}`,{responseType: 'text'})
+    return this.http.get(`${this.baseUrl}/getnameId/${id}`)
   }
   public getuserById(id:any):any
   {
