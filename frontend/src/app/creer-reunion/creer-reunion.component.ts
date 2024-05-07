@@ -15,7 +15,8 @@ export class CreerReunionComponent {
   debutR!: string;
   finReu!: string;
   description!: string;
-  rapport!: string;
+  id_rapporteur!: any;
+  id_re!:any;
   TodayDate : any = Date.now();
 
   pastDateTime(){
@@ -50,11 +51,12 @@ export class CreerReunionComponent {
 
   creerReunion() {
     const nouvelleReunion: Reunion = {
+      id_Re: this.id_re,
       id_user: this.authService.getLoggedInUser().id_user,
       debutR: this.debutR,
       finReu: this.finReu,
       description: this.description,
-      rapport: this.rapport
+      id_rapporteur:this.id_rapporteur,
     };
 
     this.reunionService.CreerReunion(nouvelleReunion).subscribe(() => {
@@ -83,7 +85,7 @@ export class CreerReunionComponent {
     this.debutR = '';
     this.finReu = '';
     this.description = '';
-    this.rapport = '';
+    this.id_rapporteur = '';
   }
 }
 

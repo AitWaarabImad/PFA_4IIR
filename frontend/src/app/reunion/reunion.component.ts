@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../auth.service";
 import {ReunionService} from "../reunion.service";
 import {Reunion} from "../reunion";
+import {User} from "../user";
 
 @Component({
   selector: 'app-reunion',
@@ -11,13 +12,19 @@ import {Reunion} from "../reunion";
 export class ReunionComponent implements OnInit{
 
   reunions: Reunion[] = [];
+  rapporteur!:any;
+  organisateur!:any;
 
   constructor(private authService:AuthService,private reunionService:ReunionService) {
   }
   ngOnInit() {
     this.reunionService.getReunionbyuserid(this.authService.getLoggedInUser().id_user).subscribe(reunions => {
       this.reunions = reunions;
+
     });
   }
 
+  getnamebyid(id:any){
+    return this.authService.getnameById(id).subscribe()
+  }
 }

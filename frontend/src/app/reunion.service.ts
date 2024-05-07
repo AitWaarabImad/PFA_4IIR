@@ -18,6 +18,6 @@ export class ReunionService {
   }
   getReunionbyuserid(id_user:any):Observable<any>
   {
-    return this.http.get(`${this.baseUrl}/Mesreunions`,id_user)
+    return this.http.get(`${this.baseUrl}/userReunions/${id_user}`,id_user)
   }
 }
