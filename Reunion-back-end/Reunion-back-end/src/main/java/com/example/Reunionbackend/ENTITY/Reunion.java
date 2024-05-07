@@ -20,13 +20,10 @@ import java.util.Date;
 public class Reunion {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long ID_Re;
-
     Date debutR;
-
     Date FinReu;
-  String description;
+    String description;
     Long ID_user;
-
     Long ID_rapporteur ;
 
 
