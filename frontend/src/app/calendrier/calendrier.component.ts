@@ -31,10 +31,12 @@ export class CalendrierComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.reunionService.getReunionbyuserid(this.authService.getLoggedInUser().id_user).subscribe(reunions => {
-      this.reunions = reunions;
-      this.events.push(reunions);
+    this.reunionService.getReunionbyuserid(this.authService.getLoggedInUser().id_user).subscribe(reunionss => {
+      this.reunions = reunionss;
+
     }
     )
+    this.events.push(this.reunions)
+    console.log(this.events)
   }
 }
