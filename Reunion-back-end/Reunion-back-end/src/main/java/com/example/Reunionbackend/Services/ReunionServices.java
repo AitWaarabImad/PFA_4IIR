@@ -60,15 +60,15 @@ public class ReunionServices implements  iReunionServices {
     }
 
     @Override
-    public Optional<Reunion> updateReunion(ReuDto reuDto, Long id) {
-        Reunion reunion = modelMapper.map(reuDto, Reunion.class);
-        Optional<Reunion> reunion1 = reunionRepo.findById(id).map(m -> {
-            m.setFinReu(reunion.getFinReu());
-            m.setDebutR(reunion.getDebutR());
-            m.setDescription(reunion.getDescription());
-            m.setID_user(reunion.getID_user());
-            return reunionRepo.save(m);
-        });
+        public Optional<Reunion> updateReunion(ReuDto reuDto, Long id) {
+            Reunion reunion = modelMapper.map(reuDto, Reunion.class);
+            Optional<Reunion> reunion1 = reunionRepo.findById(id).map(m -> {
+                m.setFinReu(reunion.getFinReu());
+                m.setDebutR(reunion.getDebutR());
+                m.setDescription(reunion.getDescription());
+                m.setID_user(reunion.getID_user());
+                return reunionRepo.save(m);
+            });
 
         return reunion1;
     }
