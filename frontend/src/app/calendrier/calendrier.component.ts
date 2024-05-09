@@ -14,13 +14,17 @@ import {Reunion} from "../reunion";
 export class CalendrierComponent implements OnInit{
 
   view: CalendarView = CalendarView.Month;
+  selectedMeeting: any; // Variable pour stocker les détails de la réunion sélectionnée
 
   reunions!: Reunion[]
   viewDate = new Date();
 
   events: CalendarEvent[] = [];
+  ev!: CalendarEvent;
+
 
   protected readonly CalendarView = CalendarView;
+
 
 
   constructor(private authService:AuthService,private reunionService:ReunionService) {
@@ -31,12 +35,34 @@ export class CalendrierComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.reunionService.getReunionbyuserid(this.authService.getLoggedInUser().id_user).subscribe(reunionss => {
-      this.reunions = reunionss;
-
-    }
-    )
-    this.events.push(this.reunions)
-    console.log(this.events)
+    this.reunionService.getReunionbyuserid(this.authService.getLoggedInUser().id_user).subscribe(reunions => {
+      this.reunions = reunions;
+      this.events = this.reunions.map(reunion => ({
+        title: reunion.description,
+        start: new Date(reunion.debutR),
+        end: new Date(reunion.finReu),
+        id: reunion.id_Re
+      }));
+    });
   }
+
+  // Méthode pour afficher les détails de la réunion lorsque vous cliquez sur un jour
+  showMeetingDetails(date: Date) {
+    // Vérifiez si une réunion existe pour la date sélectionnée
+    const meeting = this.events.find(event => event.start.getDate() === date.getDate() && event.start.getMonth() === date.getMonth() && event.start.getFullYear() === date.getFullYear());
+
+    // Si une réunion existe, stockez ses détails dans selectedMeeting et affichez la modal
+    if (meeting) {
+      this.selectedMeeting = meeting;
+      // Affichez la modal
+    }
+  }
+
+  // Méthode pour fermer la modal
+  closeModal() {
+    this.selectedMeeting = null;
+    // Cachez la modal
+  }
+
+
 }

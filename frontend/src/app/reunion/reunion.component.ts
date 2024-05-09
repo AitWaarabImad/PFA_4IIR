@@ -20,11 +20,24 @@ export class ReunionComponent implements OnInit{
   ngOnInit() {
     this.reunionService.getReunionbyuserid(this.authService.getLoggedInUser().id_user).subscribe(reunions => {
       this.reunions = reunions;
-
+      console.log(this.getnamebyid(1));
     });
   }
 
-  getnamebyid(id:any){
-    return this.authService.getnameById(id).subscribe()
+  getnamebyid(id: any) {
+    return this.authService.getuserById(id);
+  }
+
+  supprimerReunion(reunion: Reunion) {
+    this.reunionService.DeleteReunion(reunion.id_Re)
+      .subscribe(() => {
+        // Supprimer la réunion de la liste locale
+        this.reunions = this.reunions.filter(r => r !== reunion);
+      }
+      )
+  }
+
+  modifierReunion(reunion: Reunion) {
+
   }
 }

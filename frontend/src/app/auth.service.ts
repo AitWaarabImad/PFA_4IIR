@@ -56,11 +56,10 @@ export class AuthService {
     return this.http.put(`${this.baseUrl}/update`,user);
   }
 
-  public getnameById(id:any):any
-  {
-    return this.http.get(`${this.baseUrl}/getnameId/${id}`)
+  getnameById(id: any): Observable<any> {
+    return this.http.get<string>(`${this.baseUrl}/getnameId/${id}`);
   }
-  public getuserById(id:any):any
+  public getuserById(id:any):Observable<any>
   {
     return this.http.get(`${this.baseUrl}/getId/${id}`,id)
   }

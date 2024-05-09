@@ -1,0 +1,56 @@
+<!-- admin.component.html -->
+
+<p>admin works!</p>
+<div class="container">
+  <h2>Liste des Salles de Réunion</h2>
+  <div class="search-bar">
+    <mat-icon>search</mat-icon>
+    <mat-form-field appearance="outline">
+      <input matInput (input)="applyFilter($event)" placeholder="Rechercher par nom">
+    </mat-form-field>
+  </div>
+
+
+  <mat-table [dataSource]="dataSource" class="salles-table">
+    <!-- ID de salle Column -->
+    <ng-container matColumnDef="id_salle">
+      <mat-header-cell class="mat-header-cell" *matHeaderCellDef>ID de salle</mat-header-cell>
+      <mat-cell class="mat-cell" *matCellDef="let salle">{{ salle.id_Salle }}</mat-cell>
+    </ng-container>
+
+
+    <!-- Nom de la Salle Column -->
+    <ng-container matColumnDef="nomSalle">
+      <mat-header-cell class="mat-header-cell" *matHeaderCellDef>Nom de la Salle</mat-header-cell>
+      <mat-cell class="mat-cell" *matCellDef="let salle">{{ salle.nomSalle }}</mat-cell>
+    </ng-container>
+
+
+    <!-- Nombre de Places Column -->
+    <ng-container matColumnDef="place">
+      <mat-header-cell class="mat-header-cell" *matHeaderCellDef>Nombre de Places</mat-header-cell>
+      <mat-cell class="mat-cell" *matCellDef="let salle">{{ salle.place }}</mat-cell>
+    </ng-container>
+
+    <!-- Projecteur Column -->
+    <ng-container matColumnDef="projecteur">
+      <mat-header-cell class="mat-header-cell" *matHeaderCellDef>Projecteur</mat-header-cell>
+      <mat-cell class="mat-cell" *matCellDef="let salle">{{ salle.projecteur ? 'Oui' : 'Non' }}</mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell class="mat-header-cell" *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell class="mat-cell" *matCellDef="let salle">
+        <button mat-icon-button (click)="editSalle()">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+</div>
+

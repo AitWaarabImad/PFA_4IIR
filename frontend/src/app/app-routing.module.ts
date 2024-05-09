@@ -10,6 +10,8 @@ import {AuthGuard} from "./guards/auth.guard";
 import {CreerReunionComponent} from "./creer-reunion/creer-reunion.component";
 import {ReunionComponent} from "./reunion/reunion.component";
 import {CalendrierComponent} from "./calendrier/calendrier.component";
+import {CreersalledereunionComponent} from "./creersalledereunion/creersalledereunion.component";
+import {SalledereunionComponent} from "./salledereunion/salledereunion.component";
 
 
 const routes: Routes = [
@@ -22,6 +24,8 @@ const routes: Routes = [
   {path:"CreerReunion" , component :CreerReunionComponent},
   {path:"Reunion" , component : ReunionComponent},
   {path:"Calendrier" , component : CalendrierComponent},
+  {path:"Creersalledereunion" , component : CreersalledereunionComponent,canActivate:[AuthGuard]},
+  {path:"salledereunion" , component : SalledereunionComponent,canActivate:[AuthGuard]},
 
 ];
 

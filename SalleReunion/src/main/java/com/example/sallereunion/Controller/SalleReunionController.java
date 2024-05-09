@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-
+@CrossOrigin(origins = "http://localhost:4200")
 @AllArgsConstructor
 public class SalleReunionController {
 
@@ -36,7 +36,7 @@ public class SalleReunionController {
         return salleReunionService.updateSalle(id, salleReunionDto);
     }
 
-    @GetMapping("allreunion")
+    @GetMapping("allsalle")
     public List<SalleReunion> getAllSalles() {
         return salleReunionService.getAllSalle();
     }

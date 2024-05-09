@@ -1,0 +1,35 @@
+<div style="display: flex; justify-content: center; align-items: center; padding-top: 10px">
+  <mat-card [formGroup]="salleFormgroup" class="mc">
+    <mat-card-title style="text-align: center">Créer une salle de réunion</mat-card-title>
+    <mat-card-content class="mcc">
+
+      <mat-card-content>
+        <mat-form-field class="mat-form-field">
+          <mat-label>Nom de la salle</mat-label>
+          <input type="text"
+                 formControlName="nomSalle"
+                 matInput placeholder="Nom de la salle" required>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-content>
+        <mat-form-field class="mat-form-field">
+          <mat-label>Nombre de places</mat-label>
+          <input type="number"
+                 formControlName="place"
+                 matInput placeholder="Nombre de places" required>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-content>
+        <mat-checkbox formControlName="projecteur" labelPosition="before">Projecteur</mat-checkbox>
+      </mat-card-content>
+
+    </mat-card-content>
+    <mat-card-actions style="align-self: center">
+      <button (click)="creersalle()" mat-raised-button color="accent">Creer la salle</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+

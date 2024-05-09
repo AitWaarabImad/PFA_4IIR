@@ -48,6 +48,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { CalendrierComponent } from './calendrier/calendrier.component';
 import {CalendarModule, DateAdapter} from "angular-calendar";
 import {adapterFactory} from "angular-calendar/date-adapters/date-fns";
+import { CreersalledereunionComponent } from './creersalledereunion/creersalledereunion.component';
+import {MatCheckbox, MatCheckboxModule} from "@angular/material/checkbox";
+import { SalledereunionComponent } from './salledereunion/salledereunion.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,9 @@ import {adapterFactory} from "angular-calendar/date-adapters/date-fns";
     AdminComponent,
     ReunionComponent,
     CreerReunionComponent,
-    CalendrierComponent
+    CalendrierComponent,
+    CreersalledereunionComponent,
+    SalledereunionComponent
   ],
   imports: [
     BrowserModule,
@@ -108,7 +113,7 @@ import {adapterFactory} from "angular-calendar/date-adapters/date-fns";
       useFactory: adapterFactory,
     }),
     NgxMatDatetimePickerModule,
-
+    MatCheckboxModule,
 
 
   ],
