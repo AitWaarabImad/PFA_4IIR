@@ -50,8 +50,7 @@ public class ReunionServices implements  iReunionServices {
         reuDto.setDebutR(reunion1.getDebutR());
         reuDto.setFinReu(reunion1.getFinReu());
         reuDto.setDescription(reunion1.getDescription());
-
-        reuDto.setID_Re(reunion1.getID_rapporteur());
+        reuDto.setID_rapporteur(reunion1.getID_rapporteur());
 
 
 
