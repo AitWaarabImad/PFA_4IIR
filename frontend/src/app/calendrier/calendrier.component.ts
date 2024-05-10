@@ -11,7 +11,11 @@ import {Reunion} from "../reunion";
   templateUrl: './calendrier.component.html',
   styleUrl: './calendrier.component.css'
 })
+<<<<<<< HEAD
 export class CalendrierComponent implements OnInit{
+=======
+export class CalendrierComponent{
+>>>>>>> jaafar
 
   view: CalendarView = CalendarView.Month;
   selectedMeeting: any; // Variable pour stocker les détails de la réunion sélectionnée
@@ -34,6 +38,7 @@ export class CalendrierComponent implements OnInit{
 
   }
 
+<<<<<<< HEAD
   ngOnInit(): void {
     this.reunionService.getReunionbyuserid(this.authService.getLoggedInUser().id_user).subscribe(reunions => {
       this.reunions = reunions;
@@ -65,4 +70,6 @@ export class CalendrierComponent implements OnInit{
   }
 
 
+=======
+>>>>>>> jaafar
 }
