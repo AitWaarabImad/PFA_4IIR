@@ -50,6 +50,7 @@ public class ReunionServices implements  iReunionServices {
         reuDto.setDebutR(reunion1.getDebutR());
         reuDto.setFinReu(reunion1.getFinReu());
         reuDto.setDescription(reunion1.getDescription());
+        reuDto.setID_rapporteur(reunion1.getID_rapporteur());
 
         return reuDto;
     }
@@ -67,6 +68,7 @@ public class ReunionServices implements  iReunionServices {
                 m.setDebutR(reunion.getDebutR());
                 m.setDescription(reunion.getDescription());
                 m.setID_user(reunion.getID_user());
+                m.setID_rapporteur(reunion.getID_rapporteur());
                 return reunionRepo.save(m);
             });
 
@@ -93,6 +95,8 @@ public class ReunionServices implements  iReunionServices {
             reuDto.setDebutR(r.getDebutR());
             reuDto.setFinReu(r.getFinReu());
             reuDto.setDescription(r.getDescription());
+            reuDto.setID_rapporteur(r.getID_rapporteur());
+
 
             reuDtos.add(reuDto);
             return reuDto;

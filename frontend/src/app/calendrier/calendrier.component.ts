@@ -8,7 +8,7 @@ import {colors} from "@angular/cli/src/utilities/color";
   templateUrl: './calendrier.component.html',
   styleUrl: './calendrier.component.css'
 })
-export class CalendrierComponent {
+export class CalendrierComponent{
 
   view: CalendarView = CalendarView.Month;
 
@@ -22,4 +22,5 @@ export class CalendrierComponent {
     this.view = view;
 
   }
+
 }
