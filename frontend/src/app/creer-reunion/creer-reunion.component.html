@@ -17,6 +17,21 @@
     <label for="id_rapporteur"><i class="fas fa-file-alt"></i> ID_rapporteur:</label>
     <input [(ngModel)]="id_rapporteur" id="id_rapporteur" class="form-control" placeholder="ID Rapporteur">
   </div>
+  <div>
+    <form class="example-form">
+      <label for="id_rapporteur"><i class="fas fa-file-alt"></i> Rapporteur:</label>
+      <input type="text"
+             placeholder="nom rapporteur"
+             [formControl]="control"
+             [matAutocomplete]="auto"
+             class="example-input">
+      <mat-autocomplete #auto="matAutocomplete">
+        @for (name of filteredStreets | async; track name) {
+          <mat-option [value]="name">{{name}}</mat-option>
+        }
+      </mat-autocomplete>
+    </form>
+  </div>
   <button mat-raised-button class="btn-create" (click)="creerReunion()"><i class="fas fa-plus-circle"></i>Créer Réunion</button>
 </div>
 

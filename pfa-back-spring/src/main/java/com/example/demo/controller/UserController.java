@@ -2,6 +2,7 @@
 
 
     import com.example.demo.DTO.UserDto;
+    import com.example.demo.entities.Role;
     import com.example.demo.entities.User;
     import com.example.demo.mapper.UserMapper;
     import com.example.demo.repository.IUserRepository;
@@ -15,7 +16,10 @@
     import lombok.AllArgsConstructor;
     import org.springframework.web.bind.annotation.*;
 
+    import java.util.ArrayList;
     import java.util.List;
+
+    import static java.lang.System.in;
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RestController
@@ -53,6 +57,19 @@
         public List<UserDto> getAllUsers() {
 
             return userService.getAllUserDtos();
+        }
+
+        @GetMapping("/username")
+        public List<String> GetNamesOfUsers()
+        {
+            List<UserDto> allUsers = userService.getAllUserDtos();
+            List<String> userNames = new ArrayList<>();
+            for (UserDto user : allUsers) {
+                if(user.getRole()== Role.Rapporteur)
+                    userNames.add(user.getNom()+" "+user.getPrenom());
+            }
+
+            return userNames;
         }
 
         @GetMapping("/getId/{id}")

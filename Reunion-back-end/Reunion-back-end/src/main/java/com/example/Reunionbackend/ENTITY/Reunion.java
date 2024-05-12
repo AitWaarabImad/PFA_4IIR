@@ -25,6 +25,7 @@ public class Reunion {
     String description;
     Long ID_user;
     Long ID_rapporteur ;
+    // AJOUT D'UN TITRE POUR LA REUNION ET AJOUT DU NOM RAPPORTEUR ET NOM ORGANISATEUR ET LES INVITES
 
 
 

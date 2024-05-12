@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Reunion} from "../reunion";
 import {AuthService} from "../auth.service";
 import {CalendarEvent, CalendarView} from "angular-calendar";
+import {map, Observable, startWith} from "rxjs";
 
 
 
@@ -12,7 +13,7 @@ import {CalendarEvent, CalendarView} from "angular-calendar";
   templateUrl: './creer-reunion.component.html',
   styleUrls: ['./creer-reunion.component.css']
 })
-export class CreerReunionComponent {
+export class CreerReunionComponent implements OnInit{
   protected readonly CalendarView = CalendarView;
   viewDate = new Date();
   isWeekViewVisible = false;
@@ -26,35 +27,26 @@ export class CreerReunionComponent {
   id_re!:any;
   TodayDate : any = Date.now();
 
-  pastDateTime(){
-    let tDate:any = new Date();
-    let date:any  = tDate.getDate();
-    if(date<10)
-    {
-      date = "0" + date;
-    }
-    let year:any = tDate.getFullYear();
-    let month:any  = tDate.getMonth()+1;
-    if(month<10)
-    {
-      month = "0"+month;
-    }
-    let hours:any  = tDate.getHours();
-    if(hours<10)
-    {
-      hours = "0"+hours;
-    }
-    let minutes:any  = tDate.getMinutes();
-    if(minutes<10)
-    {
-      minutes = "0"+minutes;
-    }
-    this.TodayDate = year+"-"+month+"-"+date+"T"+hours+":"+minutes;
-    console.log(this.TodayDate)
-  }
+  control = new FormControl('');
+  rapporteur: string[] = [];
+  filteredStreets!: Observable<string[]>;
+
 
 
   constructor(private reunionService: ReunionService,private authService: AuthService) {}
+
+
+  ngOnInit() {
+    this.filteredStreets = this.control.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
+    this.authService.getnames().subscribe(names =>
+    {
+      this.rapporteur = names;
+    })
+  }
+
 
   creerReunion() {
     const nouvelleReunion: Reunion = {
@@ -103,6 +95,46 @@ export class CreerReunionComponent {
     this.description = '';
     this.id_rapporteur = '';
   }
+
+  pastDateTime(){
+    let tDate:any = new Date();
+    let date:any  = tDate.getDate();
+    if(date<10)
+    {
+      date = "0" + date;
+    }
+    let year:any = tDate.getFullYear();
+    let month:any  = tDate.getMonth()+1;
+    if(month<10)
+    {
+      month = "0"+month;
+    }
+    let hours:any  = tDate.getHours();
+    if(hours<10)
+    {
+      hours = "0"+hours;
+    }
+    let minutes:any  = tDate.getMinutes();
+    if(minutes<10)
+    {
+      minutes = "0"+minutes;
+    }
+    this.TodayDate = year+"-"+month+"-"+date+"T"+hours+":"+minutes;
+    console.log(this.TodayDate)
+  }
+
+
+
+  private _filter(value: string): string[] {
+    const filterValue = this._normalizeValue(value);
+    return this.rapporteur.filter(rapporteur => this._normalizeValue(rapporteur).includes(filterValue));
+  }
+
+  private _normalizeValue(value: string): string {
+    return value.toLowerCase().replace(/\s/g, '');
+  }
+
+
 
 }
 
