@@ -72,7 +72,7 @@ public class UserService implements  IUserService{
         user.setRole(userDto.getRole());
         user.setNom(userDto.getNom());
         user.setPrenom(userDto.getPrenom());
-        user.setNomComplet(userDto.getNomComplet());
+       
 
         User updatedUser = iUserRepository.save(user);
 

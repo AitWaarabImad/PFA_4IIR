@@ -22,11 +22,12 @@ public class UserMapper {
     private void configureMappings() {
         modelMapper.typeMap(UserDto.class, User.class)
                 .addMappings(mapper -> {
-                    mapper.map(UserDto::getEmail, User::setEmail);
+
                     mapper.map(UserDto::getUsername, User::setUsername);
                     mapper.map(UserDto::getEmail, User::setEmail);
                     mapper.map(UserDto::getNom, User::setNom);
                     mapper.map(UserDto::getPrenom, User::setPrenom);
+
                     mapper.map(UserDto::getIsAuthenticated, User::setIsAuthenticated);
                 });
         modelMapper.typeMap(User.class, UserDto.class)

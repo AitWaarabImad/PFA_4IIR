@@ -28,10 +28,18 @@ public class User {
     Long ID_calendrier;
     Long ID_reunion;
 
-    public void setNomComplet() {
+    public void setNom(String nom) {
+        this.nom = nom;
+        setNomComplet();  // Recalcule nomComplet à chaque changement
+    }
 
-        this.nomComplet =getNom() + " "+ getPrenom();
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+        setNomComplet();  // Recalcule nomComplet à chaque changement
+    }
 
+    private void setNomComplet() {
+        this.nomComplet = nom + " " + prenom;
     }
 
 
@@ -43,6 +51,7 @@ public class User {
 
         this.password = hashedPassword;
     }
+
 
 
 }
