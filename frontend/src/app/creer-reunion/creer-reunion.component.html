@@ -2,6 +2,10 @@
 <div class="container">
   <h2>Créer une réunion</h2>
   <div class="form-group">
+    <label for="titre"><i class="fas fa-file-alt"></i> Titre:</label>
+    <input [(ngModel)]="titre" id="titre" class="form-control" placeholder="Titre de la reunion">
+  </div>
+  <div class="form-group">
     <label for="debutR"><i class="fas fa-calendar-alt"></i> Date et heure de début:</label>
     <input [(ngModel)]="debutR" type="datetime-local" id="debutR" class="form-control" (change)="onChange(debutR)" [min]="TodayDate">
   </div>
@@ -10,16 +14,12 @@
     <input [(ngModel)]="finReu" type="datetime-local" id="finReu" class="form-control">
   </div>
   <div class="form-group">
-    <label for="description"><i class="fas fa-file-alt"></i> Description:</label>
+    <label for="description"><i class="fas fa-file-alt"></i> Description: </label>
     <textarea [(ngModel)]="description" id="description" class="form-control" placeholder="Description"></textarea>
-  </div>
-  <div class="form-group">
-    <label for="id_rapporteur"><i class="fas fa-file-alt"></i> ID_rapporteur:</label>
-    <input [(ngModel)]="id_rapporteur" id="id_rapporteur" class="form-control" placeholder="ID Rapporteur">
   </div>
   <div>
     <form class="example-form">
-      <label for="id_rapporteur"><i class="fas fa-file-alt"></i> Rapporteur:</label>
+      <label><i class="fas fa-file-alt"></i> Rapporteur: </label>
       <input type="text"
              placeholder="nom rapporteur"
              [formControl]="control"

@@ -19,11 +19,18 @@ export class CreerReunionComponent implements OnInit{
   isWeekViewVisible = false;
   events: CalendarEvent[] = [];
   reunions : Reunion[] = [];
+  nomC!: any;
+
+  nomm!: string;
+  prenomm!: string;
 
   debutR!: Date;
   finReu!: Date;
   description!: string;
   id_rapporteur!: any;
+  nom_rapporteur!: string;
+  nom_organisateur!: string;
+  titre!:string;
   id_re!:any;
   TodayDate : any = Date.now();
 
@@ -45,7 +52,9 @@ export class CreerReunionComponent implements OnInit{
     {
       this.rapporteur = names;
     })
+
   }
+
 
 
   creerReunion() {
@@ -54,7 +63,10 @@ export class CreerReunionComponent implements OnInit{
       id_user: this.authService.getLoggedInUser().id_user,
       debutR: this.debutR,
       finReu: this.finReu,
+      titre:this.titre,
       description: this.description,
+      nom_rapporteur:this.nom_rapporteur,
+      nom_organisateur:this.authService.getLoggedInUser().nom +" "+ this.authService.getLoggedInUser().prenom,
       id_rapporteur:this.id_rapporteur,
     };
 
