@@ -22,6 +22,10 @@ public class ReuDto {
     Long ID_user;
     String username;
     Long ID_rapporteur;
+    String nom_rapporteur;
+    String nom_organisateur;
+    String titre;
+    Long id_salle;
 
 
 }

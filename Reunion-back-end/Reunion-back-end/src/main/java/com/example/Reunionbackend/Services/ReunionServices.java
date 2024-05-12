@@ -51,6 +51,10 @@ public class ReunionServices implements  iReunionServices {
         reuDto.setFinReu(reunion1.getFinReu());
         reuDto.setDescription(reunion1.getDescription());
         reuDto.setID_rapporteur(reunion1.getID_rapporteur());
+        reuDto.setId_salle(reunion1.getId_salle());
+        reuDto.setTitre(reunion1.getTitre());
+        reuDto.setNom_rapporteur(reunion1.getNom_rapporteur());
+        reuDto.setNom_organisateur(reunion1.getNom_organisateur());
 
 
 
@@ -71,6 +75,11 @@ public class ReunionServices implements  iReunionServices {
                 m.setDescription(reunion.getDescription());
                 m.setID_user(reunion.getID_user());
                 m.setID_rapporteur(reunion.getID_rapporteur());
+                m.setId_salle(reunion.getId_salle());
+                m.setTitre(reunion.getTitre());
+                m.setNom_rapporteur(reunion.getNom_rapporteur());
+                m.setNom_organisateur(reunion.getNom_organisateur());
+
                 return reunionRepo.save(m);
             });
 
@@ -98,6 +107,11 @@ public class ReunionServices implements  iReunionServices {
             reuDto.setFinReu(r.getFinReu());
             reuDto.setDescription(r.getDescription());
             reuDto.setID_rapporteur(r.getID_rapporteur());
+            reuDto.setId_salle(r.getId_salle());
+            reuDto.setTitre(r.getTitre());
+            reuDto.setNom_rapporteur(r.getNom_rapporteur());
+            reuDto.setNom_organisateur(r.getNom_organisateur());
+
 
 
             reuDtos.add(reuDto);

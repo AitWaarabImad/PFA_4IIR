@@ -6,16 +6,12 @@
     import com.example.demo.mapper.UserMapper;
     import com.example.demo.repository.IUserRepository;
     import com.example.demo.services.IUserService;
-    import lombok.NoArgsConstructor;
-    import org.springframework.beans.factory.annotation.Autowired;
-    import org.springframework.http.ResponseEntity;
-    import org.springframework.stereotype.Controller;
-    import org.springframework.ui.Model;
     import com.example.demo.services.UserService;
     import lombok.AllArgsConstructor;
     import org.springframework.web.bind.annotation.*;
 
     import java.util.List;
+    import java.util.Optional;
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RestController
@@ -73,6 +69,11 @@
                 return null;
             }
         }
+        @GetMapping("/userid/{nom}/{prenom}")
+        public Optional<Long> getUserIdByNomAndPrenom(@PathVariable String nom, @PathVariable String prenom) {
+            return userService.getUserIdByNomAndPrenom(nom, prenom);
+        }
+
 
 
     }
