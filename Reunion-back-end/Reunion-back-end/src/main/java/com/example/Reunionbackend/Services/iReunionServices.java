@@ -19,4 +19,5 @@ public interface iReunionServices {
    public List<ReuDto> findReunionsByUserId(Long ID_user);
 
 
+    public List<ReuDto> getAllReunions();
 }

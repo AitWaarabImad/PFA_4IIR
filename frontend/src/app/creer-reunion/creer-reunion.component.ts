@@ -3,6 +3,7 @@ import {ReunionService} from "../reunion.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Reunion} from "../reunion";
 import {AuthService} from "../auth.service";
+import {CalendarEvent, CalendarView} from "angular-calendar";
 
 
 
@@ -12,8 +13,14 @@ import {AuthService} from "../auth.service";
   styleUrls: ['./creer-reunion.component.css']
 })
 export class CreerReunionComponent {
-  debutR!: string;
-  finReu!: string;
+  protected readonly CalendarView = CalendarView;
+  viewDate = new Date();
+  isWeekViewVisible = false;
+  events: CalendarEvent[] = [];
+  reunions : Reunion[] = [];
+
+  debutR!: Date;
+  finReu!: Date;
   description!: string;
   id_rapporteur!: any;
   id_re!:any;
@@ -73,20 +80,30 @@ export class CreerReunionComponent {
     if(selected<today)
     {
           alert("Problem");
-      this.debutR=" ";
-
+      this.debutR=new Date();
     }
+    this.reunionService.getAllreunions().subscribe(reunions => {
+      this.reunions = reunions;
+      this.events = this.reunions.map(reunion => ({
+        title: reunion.description,
+        start: new Date(reunion.debutR),
+        end: new Date(reunion.finReu),
+        id: reunion.id_Re
+      }));
+    });
+    this.isWeekViewVisible = true;
+
 
   }
 
-  protected readonly input = input;
 
   private resetFields() {
-    this.debutR = '';
-    this.finReu = '';
+    this.debutR = new Date();
+    this.finReu = new Date();
     this.description = '';
     this.id_rapporteur = '';
   }
+
 }
 
 

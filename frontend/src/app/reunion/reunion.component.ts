@@ -3,6 +3,7 @@ import {AuthService} from "../auth.service";
 import {ReunionService} from "../reunion.service";
 import {Reunion} from "../reunion";
 import {User} from "../user";
+import {map, Observable} from "rxjs";
 
 @Component({
   selector: 'app-reunion',
@@ -14,18 +15,14 @@ export class ReunionComponent implements OnInit{
   reunions: Reunion[] = [];
   rapporteur!:any;
   organisateur!:any;
+  user!: any;
 
   constructor(private authService:AuthService,private reunionService:ReunionService) {
   }
   ngOnInit() {
     this.reunionService.getReunionbyuserid(this.authService.getLoggedInUser().id_user).subscribe(reunions => {
       this.reunions = reunions;
-      console.log(this.getnamebyid(1));
     });
-  }
-
-  getnamebyid(id: any) {
-    return this.authService.getuserById(id);
   }
 
   supprimerReunion(reunion: Reunion) {

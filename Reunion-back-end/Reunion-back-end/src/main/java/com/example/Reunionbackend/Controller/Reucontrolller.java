@@ -44,4 +44,9 @@ public class Reucontrolller {
         return iReu.findReunionsByUserId(ID_user);
     }
 
+    @GetMapping("AllReunions")
+    public List<ReuDto> getAllReunions() {
+        return iReu.getAllReunions();
+    }
+
 }
