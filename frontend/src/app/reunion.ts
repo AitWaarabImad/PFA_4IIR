@@ -5,8 +5,11 @@ export class Reunion {
   id_user!:User;
   debutR!:Date;
   finReu!: Date;
+  titre!:string;
   description!:string;
   id_rapporteur!:User;
+  nom_rapporteur!:string;
+  nom_organisateur!:string;
   //ID_user!:User[];
   //rapport!:string;
   //rapporteur!:User;
