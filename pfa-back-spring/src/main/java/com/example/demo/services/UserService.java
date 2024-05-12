@@ -71,7 +71,7 @@ public class UserService implements  IUserService{
 
         user.setRole(userDto.getRole());
         user.setNom(userDto.getNom());
-        user.setPrenom(userDto.getPrenom());
+        user.setPrenom(userDto.getPre
 
         User updatedUser = iUserRepository.save(user);
 
@@ -100,6 +100,7 @@ public class UserService implements  IUserService{
             userDto.setNom(user.getNom());
             userDto.setPrenom(user.getPrenom());
             userDto.setIsAuthenticated(user.getIsAuthenticated());
+            userDto.setNomComplet(user.getNomComplet());
             // Continue avec tous les attributs que tu veux mapper...
 
             userDtos.add(userDto);

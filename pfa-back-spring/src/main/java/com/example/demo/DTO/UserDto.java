@@ -18,6 +18,7 @@ public class UserDto {
     String username;
     String email;
     String password;
+    String nomComplet;
     Boolean isAuthenticated;
     Role role = Role.Invite;
 

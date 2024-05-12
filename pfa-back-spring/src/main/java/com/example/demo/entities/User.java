@@ -18,6 +18,7 @@ public class User {
     String nom;
     String username;
     String prenom;
+    String nomComplet;
     String email;
     String password;
     @Enumerated(EnumType.STRING)
@@ -27,6 +28,11 @@ public class User {
     Long ID_calendrier;
     Long ID_reunion;
 
+    public void setNomComplet() {
+
+        this.nomComplet =getNom() + " "+ getPrenom();
+
+    }
 
 
 
