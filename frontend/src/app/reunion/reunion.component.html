@@ -8,7 +8,7 @@
     <mat-card-content>
       <div class="subtitle">Organisée par {{ reunion.id_user }}</div>
       <p>{{ reunion.description }}</p>
-      <p>Rapporteur : {{ getnamebyid(1)  }}</p>
+      <p>Rapporteur: {{ reunion.id_rapporteur }}</p>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button color="primary" (click)="modifierReunion(reunion)">Modifier</button>

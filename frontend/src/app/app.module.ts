@@ -22,7 +22,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {MatList, MatListItem, MatListItemMeta, MatListModule, MatNavList} from "@angular/material/list";
 import { AdminComponent } from './admin/admin.component';
 import {MatCell, MatHeaderCell, MatHeaderRow, MatRow, MatTable, MatTableModule} from "@angular/material/table";
-import {MatOption} from "@angular/material/autocomplete";
+import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from "@angular/material/autocomplete";
 import {MatSelect} from "@angular/material/select";
 import {AuthGuard} from "./guards/auth.guard";
 import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
@@ -114,6 +114,8 @@ import { SalledereunionComponent } from './salledereunion/salledereunion.compone
     }),
     NgxMatDatetimePickerModule,
     MatCheckboxModule,
+    MatAutocomplete,
+    MatAutocompleteTrigger,
 
 
   ],

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -130,6 +131,23 @@ public class ReunionServices implements  iReunionServices {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<ReuDto> getAllReunions() {
+        List<Reunion> reunions = reunionRepo.findAll();
+        List<ReuDto> reuDtos = new ArrayList<>();
+        for (Reunion reunion : reunions) {
+            ReuDto reuDto = new ReuDto();
+            reuDto.setID_Re(reunion.getID_Re());
+            reuDto.setDebutR(reunion.getDebutR());
+            reuDto.setFinReu(reunion.getFinReu());
+            reuDto.setDescription(reunion.getDescription());
+            reuDto.setID_rapporteur(reunion.getID_rapporteur());
+            // Continue avec tous les attributs que tu veux mapper...
+
+            reuDtos.add(reuDto);
+        }
+        return reuDtos;
+    }
 
 
 

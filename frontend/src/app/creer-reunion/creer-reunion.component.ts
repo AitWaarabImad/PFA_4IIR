@@ -3,6 +3,8 @@ import {ReunionService} from "../reunion.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Reunion} from "../reunion";
 import {AuthService} from "../auth.service";
+import {CalendarEvent, CalendarView} from "angular-calendar";
+import {map, Observable, startWith} from "rxjs";
 
 
 
@@ -11,13 +13,88 @@ import {AuthService} from "../auth.service";
   templateUrl: './creer-reunion.component.html',
   styleUrls: ['./creer-reunion.component.css']
 })
-export class CreerReunionComponent {
-  debutR!: string;
-  finReu!: string;
+export class CreerReunionComponent implements OnInit{
+  protected readonly CalendarView = CalendarView;
+  viewDate = new Date();
+  isWeekViewVisible = false;
+  events: CalendarEvent[] = [];
+  reunions : Reunion[] = [];
+
+  debutR!: Date;
+  finReu!: Date;
   description!: string;
   id_rapporteur!: any;
   id_re!:any;
   TodayDate : any = Date.now();
+
+  control = new FormControl('');
+  rapporteur: string[] = [];
+  filteredStreets!: Observable<string[]>;
+
+
+
+  constructor(private reunionService: ReunionService,private authService: AuthService) {}
+
+
+  ngOnInit() {
+    this.filteredStreets = this.control.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
+    this.authService.getnames().subscribe(names =>
+    {
+      this.rapporteur = names;
+    })
+  }
+
+
+  creerReunion() {
+    const nouvelleReunion: Reunion = {
+      id_Re: this.id_re,
+      id_user: this.authService.getLoggedInUser().id_user,
+      debutR: this.debutR,
+      finReu: this.finReu,
+      description: this.description,
+      id_rapporteur:this.id_rapporteur,
+    };
+
+    this.reunionService.CreerReunion(nouvelleReunion).subscribe(() => {
+      console.log('Nouvelle réunion créée avec succès.');
+      this.resetFields();
+    }, (error) => {
+      console.error('Erreur lors de la création de la réunion : ', error);
+    });
+  }
+
+  onChange(value:any) {
+    let today = new Date().getTime();
+    let selected = new Date(value).getTime();
+    if(selected<today)
+    {
+          alert("Problem");
+      this.debutR=new Date();
+    }
+    this.reunionService.getAllreunions().subscribe(reunions => {
+      this.reunions = reunions;
+      this.events = this.reunions.map(reunion => ({
+        title: reunion.description,
+        start: new Date(reunion.debutR),
+        end: new Date(reunion.finReu),
+        id: reunion.id_Re
+      }));
+    });
+    this.isWeekViewVisible = true;
+
+
+  }
+
+
+  private resetFields() {
+    this.debutR = new Date();
+    this.finReu = new Date();
+    this.description = '';
+    this.id_rapporteur = '';
+  }
 
   pastDateTime(){
     let tDate:any = new Date();
@@ -47,46 +124,18 @@ export class CreerReunionComponent {
   }
 
 
-  constructor(private reunionService: ReunionService,private authService: AuthService) {}
 
-  creerReunion() {
-    const nouvelleReunion: Reunion = {
-      id_Re: this.id_re,
-      id_user: this.authService.getLoggedInUser().id_user,
-      debutR: this.debutR,
-      finReu: this.finReu,
-      description: this.description,
-      id_rapporteur:this.id_rapporteur,
-    };
-
-    this.reunionService.CreerReunion(nouvelleReunion).subscribe(() => {
-      console.log('Nouvelle réunion créée avec succès.');
-      this.resetFields();
-    }, (error) => {
-      console.error('Erreur lors de la création de la réunion : ', error);
-    });
+  private _filter(value: string): string[] {
+    const filterValue = this._normalizeValue(value);
+    return this.rapporteur.filter(rapporteur => this._normalizeValue(rapporteur).includes(filterValue));
   }
 
-  onChange(value:any) {
-    let today = new Date().getTime();
-    let selected = new Date(value).getTime();
-    if(selected<today)
-    {
-          alert("Problem");
-      this.debutR=" ";
-
-    }
-
+  private _normalizeValue(value: string): string {
+    return value.toLowerCase().replace(/\s/g, '');
   }
 
-  protected readonly input = input;
 
-  private resetFields() {
-    this.debutR = '';
-    this.finReu = '';
-    this.description = '';
-    this.id_rapporteur = '';
-  }
+
 }
 
 

@@ -25,11 +25,11 @@ public class Reunion {
     String description;
     Long ID_user;
     Long ID_rapporteur ;
+
     String nom_rapporteur;
     String nom_organisateur;
     String titre;
     Long id_salle;
-
 
 
 

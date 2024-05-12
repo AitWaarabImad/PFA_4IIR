@@ -25,4 +25,8 @@ export class ReunionService {
   {
     return  this.http.delete(`${this.baseUrl}/delete/${id_reu}`)
   }
+  getAllreunions():Observable<any>
+  {
+    return this.http.get(`${this.baseUrl}/AllReunions`)
+  }
 }

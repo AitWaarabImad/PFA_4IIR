@@ -59,9 +59,13 @@ export class AuthService {
   getnameById(id: any): Observable<any> {
     return this.http.get<string>(`${this.baseUrl}/getnameId/${id}`);
   }
-  public getuserById(id:any):Observable<any>
+  public getuserById(id:any):Observable<Object>
   {
     return this.http.get(`${this.baseUrl}/getId/${id}`,id)
+  }
+
+  getnames(): Observable<any> {
+    return this.http.get<string>(`${this.baseUrl}/username`);
   }
 
 }
