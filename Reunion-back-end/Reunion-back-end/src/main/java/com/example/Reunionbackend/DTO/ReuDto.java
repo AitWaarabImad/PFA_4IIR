@@ -24,6 +24,7 @@ public class ReuDto {
     String nom_organisateur;
     String titre;
     Long id_salle;
+    String nom_salle;
 
 
 }

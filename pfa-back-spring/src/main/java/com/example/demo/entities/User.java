@@ -30,12 +30,12 @@ public class User {
 
     public void setNom(String nom) {
         this.nom = nom;
-        setNomComplet();  // Recalcule nomComplet à chaque changement
+        setNomComplet();
     }
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
-        setNomComplet();  // Recalcule nomComplet à chaque changement
+        setNomComplet();
     }
 
     private void setNomComplet() {

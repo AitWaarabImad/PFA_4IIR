@@ -26,11 +26,23 @@ public class ReunionServices implements  iReunionServices {
     @Autowired
     private WebClient webClient;
 
-    public ReuDto creeReunion(ReuDto Rdto) {
-        Reunion reunion = new Reunion();
-        reunion = modelMapper.map(Rdto, Reunion.class);
+    public ReuDto creeReunion(ReuDto rdto) {
+        // Ici, nous supposons que le nom du rapporteur est donné et qu'un service distant peut nous retourner l'ID correspondant
+        Long idRapporteur = webClient.get()
+                .uri("http://localhost:8080/userid/" + rdto.getNom_rapporteur())
+                .retrieve()
+                .bodyToMono(Long.class)
+                .block();
+
+
+        rdto.setID_rapporteur(idRapporteur);
+
+
+        Reunion reunion = modelMapper.map(rdto, Reunion.class);
         reunionRepo.save(reunion);
-        return Rdto;
+
+
+        return rdto;
     }
 
     @Override
@@ -56,6 +68,7 @@ public class ReunionServices implements  iReunionServices {
         reuDto.setTitre(reunion1.getTitre());
         reuDto.setNom_rapporteur(reunion1.getNom_rapporteur());
         reuDto.setNom_organisateur(reunion1.getNom_organisateur());
+        reuDto.setNom_salle(reunion1.getNom_salle());
 
 
 
@@ -80,6 +93,7 @@ public class ReunionServices implements  iReunionServices {
                 m.setTitre(reunion.getTitre());
                 m.setNom_rapporteur(reunion.getNom_rapporteur());
                 m.setNom_organisateur(reunion.getNom_organisateur());
+                m.setNom_salle(reunion.getNom_salle());
 
                 return reunionRepo.save(m);
             });
@@ -112,6 +126,7 @@ public class ReunionServices implements  iReunionServices {
             reuDto.setTitre(r.getTitre());
             reuDto.setNom_rapporteur(r.getNom_rapporteur());
             reuDto.setNom_organisateur(r.getNom_organisateur());
+            reuDto.setNom_salle(r.getNom_salle());
 
 
 
@@ -136,13 +151,21 @@ public class ReunionServices implements  iReunionServices {
         List<Reunion> reunions = reunionRepo.findAll();
         List<ReuDto> reuDtos = new ArrayList<>();
         for (Reunion reunion : reunions) {
+
             ReuDto reuDto = new ReuDto();
+            reuDto.setID_user(reunion.getID_user());
             reuDto.setID_Re(reunion.getID_Re());
             reuDto.setDebutR(reunion.getDebutR());
             reuDto.setFinReu(reunion.getFinReu());
             reuDto.setDescription(reunion.getDescription());
             reuDto.setID_rapporteur(reunion.getID_rapporteur());
-            // Continue avec tous les attributs que tu veux mapper...
+            reuDto.setId_salle(reunion.getId_salle());
+            reuDto.setTitre(reunion.getTitre());
+            reuDto.setNom_rapporteur(reunion.getNom_rapporteur());
+            reuDto.setNom_organisateur(reunion.getNom_organisateur());
+            reuDto.setNom_salle(reunion.getNom_salle());
+
+
 
             reuDtos.add(reuDto);
         }

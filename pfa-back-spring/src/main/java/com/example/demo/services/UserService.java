@@ -108,8 +108,8 @@ public class UserService implements  IUserService{
         }
         return userDtos;
     }
-    public Optional<Long> getUserIdByNomAndPrenom(String nom, String prenom) {
-        return iUserRepository.findByNomAndPrenom(nom, prenom)
+    public Optional<Long> getUserIdByNomAndPrenom(String nomC) {
+        return iUserRepository.findUserByNomComplet(nomC)
                 .map(User::getID_user);
     }
 
