@@ -62,7 +62,7 @@
             List<String> userNames = new ArrayList<>();
             for (UserDto user : allUsers) {
                 if(user.getRole()== Role.Rapporteur)
-                    userNames.add(user.getNom()+" "+user.getPrenom());
+                    userNames.add(user.getNomComplet());
             }
 
             return userNames;
@@ -86,9 +86,9 @@
                 return null;
             }
         }
-        @GetMapping("/userid/{nom}/{prenom}")
-        public Optional<Long> getUserIdByNomAndPrenom(@PathVariable String nom, @PathVariable String prenom) {
-            return userService.getUserIdByNomAndPrenom(nom, prenom);
+        @GetMapping("/userid/{nomC}")
+        public Optional<Long> getUserIdByNomAndPrenom(@PathVariable String nomC) {
+            return userService.getUserIdByNomAndPrenom(nomC);
         }
 
 

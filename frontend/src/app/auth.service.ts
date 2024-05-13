@@ -68,8 +68,8 @@ export class AuthService {
     return this.http.get<string>(`${this.baseUrl}/username`);
   }
 
-  getid(nom:string,prenom:string): Observable<any> {
-    return this.http.get<string>(`${this.baseUrl}/userid/${nom}/${prenom}`);
+  getid(nomc:string) {
+    return this.http.get<any>(`${this.baseUrl}/userid/${nomc}`);
   }
 
 
