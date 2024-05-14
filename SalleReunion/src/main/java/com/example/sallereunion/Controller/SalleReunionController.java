@@ -6,6 +6,7 @@ import com.example.sallereunion.Service.SalleReunionService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,5 +40,22 @@ public class SalleReunionController {
     @GetMapping("allsalle")
     public List<SalleReunion> getAllSalles() {
         return salleReunionService.getAllSalle();
+    }
+
+    @GetMapping("/SalleReunion/{nomC}")
+    public Optional<Long> getSalleReunionId(@PathVariable String nomC) {
+        return salleReunionService.getSalleReunionId(nomC);
+    }
+
+    @GetMapping("sallename")
+    public List<String> GetNamesOfSalles()
+    {
+        List<SalleReunionDto> allSalles = salleReunionService.getAllSalleDtos();
+        List<String> sallenames = new ArrayList<>();
+        for (SalleReunionDto salle : allSalles) {
+                sallenames.add(salle.getNomSalle());
+        }
+
+        return sallenames;
     }
 }

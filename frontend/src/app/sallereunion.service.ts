@@ -19,7 +19,12 @@ export class SallereunionService {
   }
 
 
-  getAllsalle():any {
+  getAllsalle(): Observable<any> {
     return this.http.get(`${this.baseUrl}/allsalle`)
+  }
+
+  getAllsallenames():Observable<any>
+  {
+    return this.http.get<string>(`${this.baseUrl}/sallename`)
   }
 }

@@ -6,6 +6,7 @@ import {AuthService} from "../auth.service";
 import {CalendarEvent, CalendarView} from "angular-calendar";
 import {map, Observable, startWith, switchMap} from "rxjs";
 import {User} from "../user";
+import {SallereunionService} from "../sallereunion.service";
 
 
 
@@ -28,30 +29,40 @@ export class CreerReunionComponent implements OnInit{
   debutR!: Date;
   finReu!: Date;
   description!: string;
-  id_rapporteur!: any;
   nom_rapporteur!: string;
   nom_organisateur!: string;
   titre!:string;
   id_re!:any;
   TodayDate : any = Date.now();
 
-  control = new FormControl('');
+  controlRapp = new FormControl('');
+  controlSalle = new FormControl('');
   rapporteur: string[] = [];
-  filteredStreets!: Observable<string[]>;
+  Salle: string[] = [];
+  filteredRapporteur!: Observable<string[]>;
+  filteredSalle!: Observable<string[]>;
 
 
 
-  constructor(private reunionService: ReunionService,private authService: AuthService) {}
+  constructor(private reunionService: ReunionService,private authService: AuthService,private salleService:SallereunionService) {}
 
 
   ngOnInit() {
-    this.filteredStreets = this.control.valueChanges.pipe(
+    this.filteredRapporteur = this.controlRapp.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value || '')),
+      map(value => this._filterRapporteur(value || '')),
+    );
+    this.filteredSalle = this.controlSalle.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterSalle(value || '')),
     );
     this.authService.getnames().subscribe(names =>
     {
       this.rapporteur = names;
+    })
+    this.salleService.getAllsallenames().subscribe(sallesnom =>
+    {
+      this.Salle = sallesnom;
     })
 
   }
@@ -59,6 +70,8 @@ export class CreerReunionComponent implements OnInit{
 
 
   creerReunion() {
+    const rapporteurValue = this.controlRapp.value;
+    const salleValue = this.controlSalle.value;
     const nouvelleReunion: Reunion = {
       id_Re: this.id_re,
       id_user: this.authService.getLoggedInUser().id_user,
@@ -66,9 +79,9 @@ export class CreerReunionComponent implements OnInit{
       finReu: this.finReu,
       titre:this.titre,
       description: this.description,
-      nom_rapporteur:this.nom_rapporteur,
+      nom_rapporteur: rapporteurValue !== null ? rapporteurValue : " ",
+      nom_salle:salleValue !== null ? salleValue : " ",
       nom_organisateur:this.authService.getLoggedInUser().nomComplet,
-      id_rapporteur:this.id_rapporteur,
     };
 
     this.reunionService.CreerReunion(nouvelleReunion).subscribe(() => {
@@ -106,7 +119,6 @@ export class CreerReunionComponent implements OnInit{
     this.debutR = new Date();
     this.finReu = new Date();
     this.description = '';
-    this.id_rapporteur = '';
   }
 
   pastDateTime(){
@@ -138,9 +150,13 @@ export class CreerReunionComponent implements OnInit{
 
 
 
-  private _filter(value: string): string[] {
+  private _filterRapporteur(value: string): string[] {
     const filterValue = this._normalizeValue(value);
     return this.rapporteur.filter(rapporteur => this._normalizeValue(rapporteur).includes(filterValue));
+  }
+  private _filterSalle(value: string): string[] {
+    const filterValue = this._normalizeValue(value);
+    return this.Salle.filter(Salle => this._normalizeValue(Salle).includes(filterValue));
   }
 
   private _normalizeValue(value: string): string {

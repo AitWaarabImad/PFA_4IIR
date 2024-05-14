@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,6 +64,30 @@ public class SalleReunionService implements iSalleReunionService{
     public List<SalleReunion> getAllSalle() {
 
         return iRepoSalle.findAll();
+    }
+
+    public List<SalleReunionDto> getAllSalleDtos() {
+
+        List<SalleReunion> salleReunions =iRepoSalle.findAll();
+        List<SalleReunionDto> salleReunionDtos = new ArrayList<>();
+        for (SalleReunion salleReunion : salleReunions) {
+            SalleReunionDto salleReunionDto = new SalleReunionDto();
+            salleReunionDto.setID_Salle(salleReunion.getID_Salle());
+            salleReunionDto.setNomSalle(salleReunion.getNomSalle());
+            salleReunionDto.setPlace(salleReunion.getPlace());
+            salleReunionDto.setID_Re(salleReunion.getID_Re());
+            salleReunionDto.setProjecteur(salleReunion.isProjecteur());
+
+
+            salleReunionDtos.add(salleReunionDto);
+        }
+        return salleReunionDtos;
+    }
+
+    @Override
+    public Optional<Long> getSalleReunionId(String nomC) {
+        return iRepoSalle.findSalleReunionByNomSalle(nomC)
+                .map(SalleReunion::getID_Salle);
     }
 
 

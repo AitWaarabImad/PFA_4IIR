@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -16,14 +17,10 @@ public class SalleReunion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long ID_Salle;
-    String NomSalle;
+    String nomSalle;
     Long ID_Re;
     int place;
+    @Getter
     boolean projecteur;
-
-
-
-
-
 
 }

@@ -17,5 +17,7 @@ public interface iSalleReunionService {
 
     public List<SalleReunion> getAllSalle();
 
+    public Optional<Long> getSalleReunionId(String nomC);
+
 
 }

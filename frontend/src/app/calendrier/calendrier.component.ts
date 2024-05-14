@@ -38,7 +38,7 @@ export class CalendrierComponent implements OnInit{
     this.reunionService.getReunionbyuserid(this.authService.getLoggedInUser().id_user).subscribe(reunions => {
       this.reunions = reunions;
       this.events = this.reunions.map(reunion => ({
-        title: reunion.description,
+        title: reunion.titre,
         start: new Date(reunion.debutR),
         end: new Date(reunion.finReu),
         id: reunion.id_Re

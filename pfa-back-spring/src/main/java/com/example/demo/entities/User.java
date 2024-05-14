@@ -22,7 +22,7 @@ public class User {
     String email;
     String password;
     @Enumerated(EnumType.STRING)
-    Role role = Role.Invite;
+    Role role = Role.Admin;
     Boolean isAuthenticated;
 
     Long ID_calendrier;

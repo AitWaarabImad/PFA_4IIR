@@ -19,16 +19,28 @@
   </div>
   <div>
     <form class="example-form">
+      <label><i class="fas fa-file-alt"></i> Salle: </label>
+      <input type="text"
+             placeholder="nom salle"
+             [formControl]="controlSalle"
+             [matAutocomplete]="salleAuto"
+             class="example-input">
+      <mat-autocomplete #salleAuto="matAutocomplete">
+        <mat-option *ngFor="let salle of filteredSalle | async" [value]="salle">{{salle}}</mat-option>
+      </mat-autocomplete>
+    </form>
+  </div>
+
+  <div>
+    <form class="example-form">
       <label><i class="fas fa-file-alt"></i> Rapporteur: </label>
       <input type="text"
              placeholder="nom rapporteur"
-             [formControl]="control"
-             [matAutocomplete]="auto"
+             [formControl]="controlRapp"
+             [matAutocomplete]="rapporteurAuto"
              class="example-input">
-      <mat-autocomplete #auto="matAutocomplete">
-        @for (name of filteredStreets | async; track name) {
-          <mat-option [value]="name">{{name}}</mat-option>
-        }
+      <mat-autocomplete #rapporteurAuto="matAutocomplete">
+        <mat-option *ngFor="let name of filteredRapporteur | async" [value]="name">{{name}}</mat-option>
       </mat-autocomplete>
     </form>
   </div>

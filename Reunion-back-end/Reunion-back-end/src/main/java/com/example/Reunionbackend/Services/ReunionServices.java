@@ -36,6 +36,12 @@ public class ReunionServices implements  iReunionServices {
 
 
         rdto.setID_rapporteur(idRapporteur);
+        Long idsalle = webClient.get()
+                .uri("http://localhost:8087/SalleReunion/" + rdto.getNom_salle())
+                .retrieve()
+                .bodyToMono(Long.class)
+                .block();
+        rdto.setId_salle(idsalle);
 
 
         Reunion reunion = modelMapper.map(rdto, Reunion.class);
