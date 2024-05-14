@@ -4,7 +4,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Reunion} from "../reunion";
 import {AuthService} from "../auth.service";
 import {CalendarEvent, CalendarView} from "angular-calendar";
-import {map, Observable, startWith} from "rxjs";
+import {map, Observable, startWith, switchMap} from "rxjs";
+import {User} from "../user";
 
 
 
@@ -66,7 +67,7 @@ export class CreerReunionComponent implements OnInit{
       titre:this.titre,
       description: this.description,
       nom_rapporteur:this.nom_rapporteur,
-      nom_organisateur:this.authService.getLoggedInUser().nom +" "+ this.authService.getLoggedInUser().prenom,
+      nom_organisateur:this.authService.getLoggedInUser().nomComplet,
       id_rapporteur:this.id_rapporteur,
     };
 

@@ -5,6 +5,7 @@ export class User {
   isauthenticated : boolean = false;
   nom! : string;
   username! : string;
+  nomComplet!:string;
   prenom! : string;
   email! : string;
   password! : string
