@@ -51,6 +51,8 @@ import {adapterFactory} from "angular-calendar/date-adapters/date-fns";
 import { CreersalledereunionComponent } from './creersalledereunion/creersalledereunion.component';
 import {MatCheckbox, MatCheckboxModule} from "@angular/material/checkbox";
 import { SalledereunionComponent } from './salledereunion/salledereunion.component';
+import { RapportComponent } from './rapport/rapport.component';
+import { EditRapportComponent } from './edit-rapport/edit-rapport.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,9 @@ import { SalledereunionComponent } from './salledereunion/salledereunion.compone
     CreerReunionComponent,
     CalendrierComponent,
     CreersalledereunionComponent,
-    SalledereunionComponent
+    SalledereunionComponent,
+    RapportComponent,
+    EditRapportComponent
   ],
   imports: [
     BrowserModule,
