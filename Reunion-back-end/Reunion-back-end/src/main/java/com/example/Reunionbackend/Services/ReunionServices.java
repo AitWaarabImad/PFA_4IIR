@@ -26,30 +26,30 @@ public class ReunionServices implements  iReunionServices {
     @Autowired
     private WebClient webClient;
 
-    public ReuDto creeReunion(ReuDto rdto) {
-        // Ici, nous supposons que le nom du rapporteur est donné et qu'un service distant peut nous retourner l'ID correspondant
-        Long idRapporteur = webClient.get()
-                .uri("http://localhost:8080/userid/" + rdto.getNom_rapporteur())
-                .retrieve()
-                .bodyToMono(Long.class)
-                .block();
+        public ReuDto creeReunion(ReuDto rdto) {
+            // Ici, nous supposons que le nom du rapporteur est donné et qu'un service distant peut nous retourner l'ID correspondant
+            Long idRapporteur = webClient.get()
+                    .uri("http://localhost:8080/userid/" + rdto.getNom_rapporteur())
+                    .retrieve()
+                    .bodyToMono(Long.class)
+                    .block();
 
 
-        rdto.setID_rapporteur(idRapporteur);
-        Long idsalle = webClient.get()
-                .uri("http://localhost:8087/SalleReunion/" + rdto.getNom_salle())
-                .retrieve()
-                .bodyToMono(Long.class)
-                .block();
-        rdto.setId_salle(idsalle);
+            rdto.setID_rapporteur(idRapporteur);
+            Long idsalle = webClient.get()
+                    .uri("http://localhost:8087/SalleReunion/" + rdto.getNom_salle())
+                    .retrieve()
+                    .bodyToMono(Long.class)
+                    .block();
+            rdto.setId_salle(idsalle);
 
 
-        Reunion reunion = modelMapper.map(rdto, Reunion.class);
-        reunionRepo.save(reunion);
+            Reunion reunion = modelMapper.map(rdto, Reunion.class);
+            reunionRepo.save(reunion);
 
 
-        return rdto;
-    }
+            return rdto;
+        }
 
     @Override
     public ReuDto getReunionById(Long id) {
