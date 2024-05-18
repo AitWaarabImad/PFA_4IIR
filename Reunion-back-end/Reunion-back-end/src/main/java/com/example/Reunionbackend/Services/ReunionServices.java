@@ -6,7 +6,9 @@ import com.example.Reunionbackend.REPOSITORY.iReunionRepo;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.ArrayList;
@@ -26,30 +28,45 @@ public class ReunionServices implements  iReunionServices {
     @Autowired
     private WebClient webClient;
 
-        public ReuDto creeReunion(ReuDto rdto) {
-            // Ici, nous supposons que le nom du rapporteur est donné et qu'un service distant peut nous retourner l'ID correspondant
-            Long idRapporteur = webClient.get()
-                    .uri("http://localhost:8080/userid/" + rdto.getNom_rapporteur())
+    public ReuDto creeReunion(ReuDto rdto) {
+        // Récupération de l'ID du rapporteur
+        Long idRapporteur = webClient.get()
+                .uri("http://localhost:8080/userid/" + rdto.getNom_rapporteur())
+                .retrieve()
+                .bodyToMono(Long.class)
+                .block();
+        rdto.setID_rapporteur(idRapporteur);
+
+        // Récupération de l'ID de la salle
+        Long idsalle = webClient.get()
+                .uri("http://localhost:8087/SalleReunion/" + rdto.getNom_salle())
+                .retrieve()
+                .bodyToMono(Long.class)
+                .block();
+        rdto.setId_salle(idsalle);
+
+        // Enregistrement de la réunion pour obtenir un ID
+        Reunion reunion = modelMapper.map(rdto, Reunion.class);
+        Reunion save = reunionRepo.save(reunion);
+
+        // Mise à jour de rdto avec l'ID de la réunion sauvegardée
+        rdto = modelMapper.map(save, ReuDto.class);
+
+        if (rdto.getID_Re() != null && rdto.getIds_invite() != null && !rdto.getIds_invite().isEmpty()) {
+            webClient.post()
+                    .uri("http://localhost:8083/invites/" + rdto.getID_Re())
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromValue(rdto.getIds_invite()))
                     .retrieve()
-                    .bodyToMono(Long.class)
+                    .bodyToMono(Void.class)
                     .block();
-
-
-            rdto.setID_rapporteur(idRapporteur);
-            Long idsalle = webClient.get()
-                    .uri("http://localhost:8087/SalleReunion/" + rdto.getNom_salle())
-                    .retrieve()
-                    .bodyToMono(Long.class)
-                    .block();
-            rdto.setId_salle(idsalle);
-
-
-            Reunion reunion = modelMapper.map(rdto, Reunion.class);
-            Reunion save = reunionRepo.save(reunion);
-
-
-            return modelMapper.map(save, ReuDto.class);
+        } else {
+            System.err.println("Erreur : ID de la réunion est null ou la liste des invités est vide.");
         }
+
+        return rdto;
+    }
+
 
     @Override
     public ReuDto getReunionById(Long id) {

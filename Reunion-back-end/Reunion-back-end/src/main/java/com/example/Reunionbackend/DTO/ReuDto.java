@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -25,6 +26,7 @@ public class ReuDto {
     String titre;
     Long id_salle;
     String nom_salle;
+    List<Long> ids_invite;
 
 
 }
