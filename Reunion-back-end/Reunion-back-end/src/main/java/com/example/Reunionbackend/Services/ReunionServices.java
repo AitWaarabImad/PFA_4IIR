@@ -45,10 +45,10 @@ public class ReunionServices implements  iReunionServices {
 
 
             Reunion reunion = modelMapper.map(rdto, Reunion.class);
-            reunionRepo.save(reunion);
+            Reunion save = reunionRepo.save(reunion);
 
 
-            return rdto;
+            return modelMapper.map(save, ReuDto.class);
         }
 
     @Override

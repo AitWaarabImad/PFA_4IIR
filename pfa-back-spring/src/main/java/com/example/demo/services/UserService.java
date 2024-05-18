@@ -83,9 +83,7 @@ public class UserService implements  IUserService{
     public UserDto findById(Long id) {
         UserDto userDto;
         Optional<User> user = iUserRepository.findById(id);
-        System.out.println(user);
         userDto = modelMapper.map(user,UserDto.class);
-        System.out.println(userDto);
         return userDto;
     }
 
