@@ -1,4 +1,3 @@
-
 <div class="container">
   <h2>Créer une réunion</h2>
   <div class="form-group">
@@ -17,36 +16,56 @@
     <label for="description"><i class="fas fa-file-alt"></i> Description: </label>
     <textarea [(ngModel)]="description" id="description" class="form-control" placeholder="Description"></textarea>
   </div>
-  <div>
-    <form class="example-form">
-      <label><i class="fas fa-file-alt"></i> Salle: </label>
-      <input type="text"
-             placeholder="nom salle"
-             [formControl]="controlSalle"
-             [matAutocomplete]="salleAuto"
-             class="example-input">
-      <mat-autocomplete #salleAuto="matAutocomplete">
-        <mat-option *ngFor="let salle of filteredSalle | async" [value]="salle">{{salle}}</mat-option>
-      </mat-autocomplete>
-    </form>
-  </div>
+  <!--    <form class="example-form">-->
+  <!--      <label><i class="fas fa-file-alt"></i> Salle: </label>-->
+  <!--      <input type="text"-->
+  <!--             placeholder="nom salle"-->
+  <!--             [formControl]="controlSalle"-->
+  <!--             [matAutocomplete]="salleAuto"-->
+  <!--             class="example-input">-->
+  <!--      <mat-autocomplete #salleAuto="matAutocomplete">-->
+  <!--        <mat-option *ngFor="let salle of filteredSalle | async" [value]="salle">{{salle}}</mat-option>-->
+  <!--      </mat-autocomplete>-->
+  <!--    </form>-->
+  <!--    <form class="example-form">-->
+  <!--      <label><i class="fas fa-file-alt"></i> Salle: </label>-->
+  <!--      <mat-form-field appearance="fill" class="example-input">-->
+  <!--        <mat-select [formControl]="controlSalle" placeholder="Select a Salle">-->
+  <!--          <mat-option *ngFor="let salle of Salle | async" [value]="salle">{{salle}}</mat-option>-->
+  <!--        </mat-select>-->
+  <!--      </mat-form-field>-->
+  <!--    </form>-->
+  <!--  </div>-->
 
   <div>
     <form class="example-form">
-      <label><i class="fas fa-file-alt"></i> Rapporteur: </label>
-      <input type="text"
-             placeholder="nom rapporteur"
-             [formControl]="controlRapp"
-             [matAutocomplete]="rapporteurAuto"
-             class="example-input">
-      <mat-autocomplete #rapporteurAuto="matAutocomplete">
-        <mat-option *ngFor="let name of filteredRapporteur | async" [value]="name">{{name}}</mat-option>
-      </mat-autocomplete>
+      <label><i class="fas fa-file-alt"></i> Salle: </label>
+      <mat-form-field appearance="fill" class="example-input">
+        <mat-select [formControl]="controlSalle" placeholder="Select a Salle">
+          <mat-option *ngFor="let salle of Salle" [value]="salle">{{salle}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <label><i class="fas fa-user"></i> Rapporteur: </label>
+      <mat-form-field appearance="fill" class="example-input">
+        <mat-select [formControl]="controlRapp" placeholder="Select a Rapporteur">
+          <mat-option *ngFor="let rapporteur of rapporteur" [value]="rapporteur">{{rapporteur}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <label><i class="fas fa-user"></i> Invite: </label>
+      <mat-form-field appearance="fill" class="example-input">
+        <mat-select [formControl]="controlInvite" multiple placeholder="Select an invite">
+          <mat-option *ngFor="let invite of invites" [value]="invite.id_user">{{invite.nomComplet}}</mat-option>
+
+        </mat-select>
+      </mat-form-field>
     </form>
   </div>
   <button mat-raised-button class="btn-create" (click)="creerReunion()"><i class="fas fa-plus-circle"></i>Créer Réunion</button>
 </div>
+<button (click)="click()">click</button>
 
 <div id="calendar-container">
-    <mwl-calendar-week-view *ngIf="isWeekViewVisible" [viewDate]="debutR" [events]="events"></mwl-calendar-week-view>
+  <mwl-calendar-week-view *ngIf="isWeekViewVisible" [viewDate]="debutR" [events]="events"></mwl-calendar-week-view>
 </div>

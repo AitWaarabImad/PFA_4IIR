@@ -16,11 +16,17 @@ public class InviteController {
     private iInviteService inviteService;
 
     @PostMapping("/{idReunion}")
-    void createInvite(@RequestParam List<Long> ids,@PathVariable long idReunion){
+    void createInvite(@RequestBody List<Long> ids,@PathVariable long idReunion){
+        System.out.println("I am here in create invite controller");
+
         inviteService.createInvite(ids,idReunion);
     }
 
-
+    @GetMapping("/reunion/{id}")
+    public List<Long> getReuofInv(@PathVariable long id)
+    {
+        return inviteService.getReuOfInv(id);
+    }
     @GetMapping("/{id}")
     public Optional<InviteDTO> getInvite(@PathVariable long id) {
         return inviteService.getInviteById(id);

@@ -20,6 +20,10 @@ export class ReunionService {
   {
     return this.http.get(`${this.baseUrl}/userReunions/${id_user}`,id_user)
   }
+  getReunionbyrappid(id_user:any):Observable<any>
+  {
+    return this.http.get(`${this.baseUrl}/rappReunions/${id_user}`,id_user)
+  }
 
   DeleteReunion(id_reu:any):Observable<any>
   {

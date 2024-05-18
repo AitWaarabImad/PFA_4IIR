@@ -23,6 +23,9 @@ export class ReunionComponent implements OnInit{
     this.reunionService.getReunionbyuserid(this.authService.getLoggedInUser().id_user).subscribe(reunions => {
       this.reunions = reunions;
     });
+    this.reunionService.getReunionbyrappid(this.authService.getLoggedInUser().id_user).subscribe(reunions => {
+      this.reunions = this.reunions.concat(reunions)
+    })
   }
 
   supprimerReunion(reunion: Reunion) {

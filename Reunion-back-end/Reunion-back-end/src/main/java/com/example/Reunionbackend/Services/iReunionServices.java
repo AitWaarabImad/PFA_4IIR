@@ -17,7 +17,7 @@ public interface iReunionServices {
     public Optional<Reunion> updateReunion(ReuDto reuDto, Long id);
 
    public List<ReuDto> findReunionsByUserId(Long ID_user);
-
+   public List<ReuDto> findReunionsByID_rapp(Long ID_rapp);
 
     public List<ReuDto> getAllReunions();
 }

@@ -26,7 +26,7 @@ public class ReuDto {
     String titre;
     Long id_salle;
     String nom_salle;
-    List<Long> ids_invite;
+    List<Long> ids;
 
 
 }

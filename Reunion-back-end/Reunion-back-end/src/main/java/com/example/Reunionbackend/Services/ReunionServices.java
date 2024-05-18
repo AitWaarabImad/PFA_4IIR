@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.yaml.snakeyaml.events.Event;
 import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
@@ -44,34 +45,33 @@ public class ReunionServices implements  iReunionServices {
                 .block();
         rdto.setId_salle(idsalle);
 
+            System.out.println("Received ReuDto object: " + rdto.toString());
+            System.out.println("Received ids array: " + rdto.getIds());
+
+
+
         Reunion reunion = modelMapper.map(rdto, Reunion.class);
+        System.out.println(reunion.toString());
+
         Reunion save = reunionRepo.save(reunion);
-        rdto = modelMapper.map(save, ReuDto.class);
-
-        final Long idReunion = rdto.getID_Re(); // Assurez-vous que cette valeur est final ou effectivement finale
-        final List<Long> inviteIds = rdto.getIds_invite(); // De même pour cette liste
-
-        if (idReunion != null && inviteIds != null && !inviteIds.isEmpty()) {
-            WebClient client = WebClient.create("http://localhost:8083");
-
-            String idsAsString = inviteIds.stream()
-                    .map(String::valueOf)
-                    .collect(Collectors.joining(","));
-
-            client.post()
-                    .uri(uriBuilder -> uriBuilder.path("/invites/" + idReunion)
-                            .queryParam("ids", idsAsString)
-                            .build())
-                    .retrieve()
-                    .onStatus(status -> status.value() >= 400, response -> {
-                        System.err.println("Error with the request, status code: " + response.statusCode());
-                        return Mono.error(new RuntimeException("Error with the request"));
-                    })
-                    .toBodilessEntity()
-                    .block();
-        } else {
-            System.err.println("Erreur : ID de la réunion est null ou la liste des invités est vide.");
+        System.out.println("Received ReuDto object: " + rdto.toString());
+        System.out.println("Received ids array: " + rdto.getIds());
+        // Prepare the list of IDs
+        // Ensure ids_invite is not null
+        List<Long> ids = rdto.getIds();
+        if (ids == null) {
+            ids = new ArrayList<>();
         }
+        // Call other microservice API to create invites
+        webClient.post()
+                .uri("http://localhost:8083/invites/{idReunion}", reunion.getID_Re())
+                .body(BodyInserters.fromValue(ids))
+                .retrieve()
+                .toBodilessEntity()
+                .block();
+
+
+
 
         return rdto;
     }
@@ -174,6 +174,16 @@ public class ReunionServices implements  iReunionServices {
         // Filtre les réunions en fonction de l'ID_user et les convertit en ReuDto
         return allReunions.stream()
                 .filter(reunion -> reunion.getID_user().equals(ID_user))
+                .map(reunion -> modelMapper.map(reunion, ReuDto.class))
+                .collect(Collectors.toList());
+    }
+    public List<ReuDto> findReunionsByID_rapp(Long ID_rapp) {
+        // Récupère toutes les réunions de la base de données
+        List<Reunion> allReunions = reunionRepo.findAll();
+
+        // Filtre les réunions en fonction de l'ID_user et les convertit en ReuDto
+        return allReunions.stream()
+                .filter(reunion -> ID_rapp.equals(reunion.getID_rapporteur())  )
                 .map(reunion -> modelMapper.map(reunion, ReuDto.class))
                 .collect(Collectors.toList());
     }

@@ -5,7 +5,7 @@
       <button id="today" class="calendar-button" mwlCalendarToday [(viewDate)]="viewDate">Today</button>
       <button id="next" class="calendar-button" mwlCalendarNextView [(viewDate)]="viewDate" [view]="view">Next</button>
     </div>
-    <div id="cal-date-field">{{viewDate | calendarDate:(view + 'ViewTitle') : 'en'}}</div>
+    <div id="cal-date-field">{{viewDate | calendarDate:(view + 'ViewTitle' ) : 'en'}}</div>
     <div>
       <button id="month" class="calendar-view-button" (click)="setView(CalendarView.Month)">Month</button>
       <button id="week" class="calendar-view-button" (click)="setView(CalendarView.Week)">Week</button>

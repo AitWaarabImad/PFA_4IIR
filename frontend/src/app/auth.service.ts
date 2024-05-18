@@ -67,6 +67,9 @@ export class AuthService {
   getnames(): Observable<any> {
     return this.http.get<string>(`${this.baseUrl}/username`);
   }
+  getnamesinvite(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/invite`);
+  }
 
   getid(nomc:string) {
     return this.http.get<any>(`${this.baseUrl}/userid/${nomc}`);

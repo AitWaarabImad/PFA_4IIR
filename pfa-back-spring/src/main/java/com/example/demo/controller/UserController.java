@@ -67,6 +67,18 @@
 
             return userNames;
         }
+        @GetMapping("/invite")
+        public List<UserDto> GetNamesOfInvite()
+        {
+            List<UserDto> allUsers = userService.getAllUserDtos();
+            List<UserDto> inviteUsers = new ArrayList<>();
+            for (UserDto user : allUsers) {
+                if(user.getRole()== Role.Invite)
+                    inviteUsers.add(user);
+            }
+
+            return inviteUsers;
+        }
 
         @GetMapping("/getId/{id}")
         public UserDto getByiD(@PathVariable Long id){

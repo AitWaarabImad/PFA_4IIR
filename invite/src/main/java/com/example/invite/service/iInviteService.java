@@ -11,4 +11,7 @@ public interface iInviteService {
     List<InviteDTO> getAllInvites();
     void deleteInvite(long id);
     Optional<InviteDTO> updateInvite(InviteDTO inviteDTO, long id);
-}
+
+    public List<Long> getReuOfInv(Long idUser);
+
+    }

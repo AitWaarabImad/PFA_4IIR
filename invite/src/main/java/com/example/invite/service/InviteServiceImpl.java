@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,6 +29,7 @@ public class InviteServiceImpl implements iInviteService {
 
     @Override
     public void createInvite(List<Long> ids , long idReunion) {
+        System.out.println("I am here in create invite");
         for(long id : ids){
 
             UserDto userDto = webClient.get()
@@ -38,6 +40,7 @@ public class InviteServiceImpl implements iInviteService {
 
             Invite invite = Invite.builder().id_invite(id).id_reu(idReunion).nom_invite(userDto.getNomComplet()).id_user(userDto.getID_user()).build();
             inviteRepository.save(invite);
+
         }
     }
 
@@ -49,10 +52,18 @@ public class InviteServiceImpl implements iInviteService {
 
     @Override
     public List<InviteDTO> getAllInvites() {
-        List<Invite> invites = inviteRepository.findAll();
-        return invites.stream()
-                .map(invite -> modelMapper.map(invite, InviteDTO.class))
-                .collect(Collectors.toList());
+        return null;
+    }
+
+
+    @Override
+    public List<Long> getReuOfInv(Long idUser){
+        List<Long> idReuList = new ArrayList<>();
+        List<InviteDTO> invites = inviteRepository.findById_user(idUser);
+        for (InviteDTO invite : invites) {
+            idReuList.add(invite.getId_reu());
+        }
+        return idReuList;
     }
 
     @Override

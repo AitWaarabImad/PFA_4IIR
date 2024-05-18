@@ -43,6 +43,10 @@ public class Reucontrolller {
     public List<ReuDto> getReunionsByUserId(@PathVariable Long ID_user) {
         return iReu.findReunionsByUserId(ID_user);
     }
+    @GetMapping("/rappReunions/{ID_rapporteur}")
+    public List<ReuDto> getReunionsByID_rapporteur(@PathVariable Long ID_rapporteur) {
+        return iReu.findReunionsByID_rapp(ID_rapporteur);
+    }
 
     @GetMapping("AllReunions")
     public List<ReuDto> getAllReunions() {
