@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Reunion} from "./reunion";
 import {Observable} from "rxjs";
 
@@ -32,6 +32,11 @@ export class ReunionService {
   getAllreunions():Observable<any>
   {
     return this.http.get(`${this.baseUrl}/AllReunions`)
+  }
+
+  getReubyid(ids: number[]): Observable<any> {
+    const params = new HttpParams().set('ids', ids.join(','));
+    return this.http.get(`${this.baseUrl}/reunions`, { params });
   }
 
 

@@ -106,6 +106,39 @@ public class ReunionServices implements  iReunionServices {
 
         return reuDto;
     }
+    @Override
+    public List<ReuDto> getReunionByIds(List<Long> ids) {
+
+        List<ReuDto> reuDtoList = new ArrayList<>();
+
+        for (Long id : ids) {
+            Optional<Reunion> reunion = reunionRepo.findById(id);
+            Reunion reunion1 = reunion.orElseThrow(() -> new RuntimeException("Reunion not found with ID: " + id));
+            System.out.println(reunion1);
+            Long userId = Long.valueOf(reunion1.getID_user());
+
+            ReuDto reuDto = webClient.get()
+                    .uri("http://localhost:8080/getId/" + userId)
+                    .retrieve()
+                    .bodyToMono(ReuDto.class)
+                    .block();
+            reuDto.setID_Re(reunion1.getID_Re());
+            reuDto.setDebutR(reunion1.getDebutR());
+            reuDto.setFinReu(reunion1.getFinReu());
+            reuDto.setDescription(reunion1.getDescription());
+            reuDto.setID_rapporteur(reunion1.getID_rapporteur());
+            reuDto.setId_salle(reunion1.getId_salle());
+            reuDto.setTitre(reunion1.getTitre());
+            reuDto.setNom_rapporteur(reunion1.getNom_rapporteur());
+            reuDto.setNom_organisateur(reunion1.getNom_organisateur());
+            reuDto.setNom_salle(reunion1.getNom_salle());
+
+            reuDtoList.add(reuDto);
+        }
+
+        return reuDtoList;
+    }
+
 
     @Override
     public void deleteReunion(Long id) {
@@ -177,6 +210,22 @@ public class ReunionServices implements  iReunionServices {
                 .map(reunion -> modelMapper.map(reunion, ReuDto.class))
                 .collect(Collectors.toList());
     }
+
+
+    public List<ReuDto> findReunionsBylistID(List <Long> ID_reu) {
+        // Récupère toutes les réunions de la base de données
+        List<Reunion> allReunions = reunionRepo.findAll();
+
+        // Filtre les réunions en fonction de l'ID_user et les convertit en ReuDto
+        return allReunions.stream()
+                .filter(reunion -> reunion.getID_Re().equals(ID_reu))
+                .map(reunion -> modelMapper.map(reunion, ReuDto.class))
+                .collect(Collectors.toList());
+    }
+
+
+
+    @Override
     public List<ReuDto> findReunionsByID_rapp(Long ID_rapp) {
         // Récupère toutes les réunions de la base de données
         List<Reunion> allReunions = reunionRepo.findAll();

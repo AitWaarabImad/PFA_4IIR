@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/invites")
+@CrossOrigin(origins = "http://localhost:4200")
 public class InviteController {
 
     @Autowired
@@ -22,7 +23,7 @@ public class InviteController {
         inviteService.createInvite(ids,idReunion);
     }
 
-    @GetMapping("/process-reunions/{idUser}")
+    @GetMapping("/reunions/{idUser}")
     public List<Long> processReunionsByUserId(@PathVariable long idUser) {
         return inviteService.processReunionsByUserId(idUser);
 

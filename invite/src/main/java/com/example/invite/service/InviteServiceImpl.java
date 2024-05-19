@@ -44,6 +44,8 @@ public class InviteServiceImpl implements iInviteService {
         }
     }
 
+    
+
     @Override
     public Optional<InviteDTO> getInviteById(long id) {
         Optional<Invite> invite = inviteRepository.findById(id);

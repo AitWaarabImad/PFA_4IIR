@@ -27,6 +27,13 @@ public class Reucontrolller {
     return iReu.getReunionById(id);
 
     }
+    @GetMapping("/reunions")
+    public List<ReuDto> getReuId(@RequestParam("ids") List<Long> ids){
+
+
+    return iReu.getReunionByIds(ids);
+
+    }
     @PutMapping("update/{id}")
     public Optional<Reunion> update(@PathVariable Long id, @RequestBody ReuDto  reuDto){
 
@@ -37,6 +44,8 @@ public class Reucontrolller {
     public void delete(@PathVariable Long id ){
     iReu.deleteReunion(id);
     }
+
+
 
 
     @GetMapping("/userReunions/{ID_user}")

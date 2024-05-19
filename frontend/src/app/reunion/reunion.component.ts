@@ -4,6 +4,7 @@ import {ReunionService} from "../reunion.service";
 import {Reunion} from "../reunion";
 import {User} from "../user";
 import {map, Observable} from "rxjs";
+import {InviteService} from "../invite.service";
 
 @Component({
   selector: 'app-reunion',
@@ -16,16 +17,35 @@ export class ReunionComponent implements OnInit{
   rapporteur!:any;
   organisateur!:any;
   user!: any;
+  ids: any[] = []
 
-  constructor(private authService:AuthService,private reunionService:ReunionService) {
+  constructor(private authService:AuthService,private reunionService:ReunionService,private inviteService:InviteService) {
   }
   ngOnInit() {
-    this.reunionService.getReunionbyuserid(this.authService.getLoggedInUser().id_user).subscribe(reunions => {
-      this.reunions = reunions;
+
+    const userId = this.authService.getLoggedInUser().id_user;
+
+    this.reunionService.getReunionbyuserid(userId).subscribe({
+      next: reunions => this.reunions = reunions,
+      error: err => console.error('Failed to fetch reunions by user ID', err)
     });
-    this.reunionService.getReunionbyrappid(this.authService.getLoggedInUser().id_user).subscribe(reunions => {
-      this.reunions = this.reunions.concat(reunions)
-    })
+
+
+    this.reunionService.getReunionbyrappid(userId).subscribe({
+      next: reunions => this.reunions = this.reunions.concat(reunions),
+      error: err => console.error('Failed to fetch reunions by RAP ID', err)
+    });
+
+
+    this.inviteService.getIdsofReu(userId).subscribe({
+      next: ids => {
+        this.reunionService.getReubyid(ids).subscribe({
+          next: reunions => this.reunions = this.reunions.concat(reunions),
+          error: err => console.error('Failed to fetch reunions by IDs', err)
+        });
+      },
+      error: err => console.error('Failed to fetch IDs of reunions', err)
+    });
   }
 
   supprimerReunion(reunion: Reunion) {
