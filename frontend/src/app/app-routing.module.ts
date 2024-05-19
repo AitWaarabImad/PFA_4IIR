@@ -13,6 +13,7 @@ import {CalendrierComponent} from "./calendrier/calendrier.component";
 import {CreersalledereunionComponent} from "./creersalledereunion/creersalledereunion.component";
 import {SalledereunionComponent} from "./salledereunion/salledereunion.component";
 import {EditRapportComponent} from "./edit-rapport/edit-rapport.component";
+import {RapportComponent} from "./rapport/rapport.component";
 
 
 
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path:"Creersalledereunion" , component : CreersalledereunionComponent,canActivate:[AuthGuard]},
   {path:"salledereunion" , component : SalledereunionComponent,canActivate:[AuthGuard]},
   {path:"creerrapport" , component : EditRapportComponent },
+  {path:"rapport" , component : RapportComponent },
 
 ];
 
