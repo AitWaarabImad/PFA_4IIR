@@ -11,10 +11,10 @@ import java.util.Date;
 @AllArgsConstructor
 
 public class InviteDTO {
-    long id_invite;
+    long idInvite;
     String nom_invite;
-    long id_reu;
-    long id_user;
+    long idReu;
+    long idUser;
     Long ID_Re;
     Date debutR;
     Date FinReu;

@@ -12,6 +12,6 @@ public interface iInviteService {
     void deleteInvite(long id);
     Optional<InviteDTO> updateInvite(InviteDTO inviteDTO, long id);
 
-    public List<Long> getReuOfInv(Long idUser);
+    public List<Long> processReunionsByUserId(long idUser);
 
     }

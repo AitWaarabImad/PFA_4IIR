@@ -38,7 +38,7 @@ public class InviteServiceImpl implements iInviteService {
                     .bodyToMono(UserDto.class)
                     .block();
 
-            Invite invite = Invite.builder().id_invite(id).id_reu(idReunion).nom_invite(userDto.getNomComplet()).id_user(userDto.getID_user()).build();
+            Invite invite = Invite.builder().idInvite(id).idReu(idReunion).nomInvite(userDto.getNomComplet()).idUser(userDto.getID_user()).build();
             inviteRepository.save(invite);
 
         }
@@ -56,19 +56,24 @@ public class InviteServiceImpl implements iInviteService {
     }
 
 
-    @Override
-    public List<Long> getReuOfInv(Long idUser){
-        List<Long> idReuList = new ArrayList<>();
-        List<InviteDTO> invites = inviteRepository.findById_user(idUser);
-        for (InviteDTO invite : invites) {
-            idReuList.add(invite.getId_reu());
-        }
-        return idReuList;
-    }
 
     @Override
     public void deleteInvite(long id) {
         inviteRepository.deleteById(id);
+    }
+    @Override
+    public List<Long> processReunionsByUserId(long idUser) {
+        List<Invite> invites = inviteRepository.findByIdUser(idUser);
+        List<Long> ids = new ArrayList<>() ;
+        for (Invite invite : invites) {
+            // Traitez chaque réunion ici
+            // Par exemple, afficher les détails de chaque réunion
+            ids.add(invite.getIdReu());
+            System.out.println("Réunion ID: " + invite.getIdReu() + " pour l'utilisateur ID: " + idUser);
+
+        }
+        System.out.println(ids);
+        return ids;
     }
 
     @Override

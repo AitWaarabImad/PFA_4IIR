@@ -16,9 +16,9 @@ public class Invite {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id_invite;
-    String nom_invite;
-    long id_reu;
-    long id_user;
+    long idInvite;
+    String nomInvite;
+    long idReu;
+    long idUser;
 
 }

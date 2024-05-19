@@ -22,10 +22,10 @@ public class InviteController {
         inviteService.createInvite(ids,idReunion);
     }
 
-    @GetMapping("/reunion/{id}")
-    public List<Long> getReuofInv(@PathVariable long id)
-    {
-        return inviteService.getReuOfInv(id);
+    @GetMapping("/process-reunions/{idUser}")
+    public List<Long> processReunionsByUserId(@PathVariable long idUser) {
+        return inviteService.processReunionsByUserId(idUser);
+
     }
     @GetMapping("/{id}")
     public Optional<InviteDTO> getInvite(@PathVariable long id) {
