@@ -30,6 +30,7 @@ public class Reunion {
     String titre;
     Long id_salle;
     String nom_salle;
+    Long idRapport;
 
 
 }

@@ -1,10 +1,10 @@
-<p>profile works!</p>
-<div *ngIf="loggedInUser">
-  <h1>Welcome, {{ loggedInUser.username}}</h1>
-  <h1>Welcome, {{ loggedInUser.password}}</h1>
-  <h1>Welcome, {{ loggedInUser.id_user}}</h1>
-  <h1>Welcome, {{ loggedInUser.email}}</h1>
-  <h1>Welcome, {{ loggedInUser.nom}}</h1>
-  <h1>Welcome, {{ loggedInUser.role}}</h1>
-  <!-- Display other user information as needed -->
+<div *ngIf="loggedInUser" class="profile-container">
+  <h1>Welcome, {{ loggedInUser.username }}</h1>
+  <div class="profile-details">
+    <p><strong>User ID:</strong> {{ loggedInUser.id_user }}</p>
+    <p><strong>Email:</strong> {{ loggedInUser.email }}</p>
+    <p><strong>Name:</strong> {{ loggedInUser.nom }}</p>
+    <p><strong>Role:</strong> {{ loggedInUser.role }}</p>
+  </div>
 </div>
+

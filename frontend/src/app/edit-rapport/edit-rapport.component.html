@@ -1,1 +1,26 @@
-<p>edit-rapport works!</p>
+<!-- edit-rapport.component.html -->
+
+<div class="container">
+  <div *ngIf="rapportData" class="rapport-details">
+    <h2>Rapport Details</h2>
+    <div class="details-item">
+      <label>ID:</label>
+      <span>{{ rapportData.id_rapport }}</span>
+    </div>
+    <div class="details-item">
+      <label>Reunion ID:</label>
+      <span>{{ rapportData.idReunion }}</span>
+    </div>
+    <div class="details-item">
+      <label>Rapporteur ID:</label>
+      <span>{{ rapportData.idRapporteur }}</span>
+    </div>
+
+    <div class="description-edit">
+      <label>Rapport:</label>
+      <textarea [(ngModel)]="rapportData.description"></textarea>
+    </div>
+
+    <button class="save-button" (click)="saveChanges()">Save Changes</button>
+  </div>
+</div>

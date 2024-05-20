@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
+
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class RapportController {
 
@@ -15,14 +18,20 @@ public class RapportController {
     iRapportService  iRapportService;
 
 
-    @PostMapping("/createRapport")
-    public RapportDto createRapport(@RequestBody RapportDto rapportDto) {
-        return iRapportService.createRapport(rapportDto);
+   @PostMapping("/createRapport")
+    public RapportDto createRapport(@RequestBody Map<String, Long> requestBody) {
+        Long id_rapp = requestBody.get("id_rapp");
+        Long id_reunion = requestBody.get("id_reunion");
+        return iRapportService.createRapport(id_rapp, id_reunion);
     }
 
     @GetMapping("/rapport/{id}")
     public RapportDto getRapportById(@PathVariable Long id) {
         return iRapportService.getRapportById(id);
+    }
+    @GetMapping("rapports/{id}")
+    public List<RapportDto> getRapportByIdrapp(@PathVariable Long id) {
+        return iRapportService.getRaportsbyIdrapp(id);
     }
 
     @PutMapping("/update/{id}")

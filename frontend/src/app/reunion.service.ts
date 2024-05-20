@@ -38,6 +38,9 @@ export class ReunionService {
     const params = new HttpParams().set('ids', ids.join(','));
     return this.http.get(`${this.baseUrl}/reunions`, { params });
   }
+  getReuid(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/reunions/${id}`);
+  }
 
 
 }

@@ -8,14 +8,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.yaml.snakeyaml.events.Event;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,11 +51,26 @@ public class ReunionServices implements  iReunionServices {
 
 
         Reunion reunion = modelMapper.map(rdto, Reunion.class);
-        System.out.println(reunion.toString());
 
         Reunion save = reunionRepo.save(reunion);
-        System.out.println("Received ReuDto object: " + rdto.toString());
-        System.out.println("Received ids array: " + rdto.getIds());
+
+
+        System.out.println(idRapporteur);
+        System.out.println(reunion.getID_Re());
+        Map<String, Long> requestBody = new HashMap<>();
+        requestBody.put("id_rapp", idRapporteur);
+        requestBody.put("id_reunion", reunion.getID_Re());
+
+        webClient.post()
+                .uri("http://localhost:8086/createRapport")
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromValue(requestBody))
+                .retrieve()
+                .toBodilessEntity()
+                .block();
+
+
+
         // Prepare the list of IDs
         // Ensure ids_invite is not null
         List<Long> ids = rdto.getIds();

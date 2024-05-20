@@ -20,7 +20,7 @@ public class Reucontrolller {
     public ReuDto creeReu(@RequestBody ReuDto reuDto){
         return iReu.creeReunion(reuDto);
     }
-@GetMapping("reunion/{id}")
+@GetMapping("/reunion/{id}")
     public ReuDto getReuId(@PathVariable Long id){
 
 

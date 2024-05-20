@@ -15,8 +15,10 @@ import lombok.NoArgsConstructor;
 public class Rapport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id_rapport;
+    Long id_rapport;
+    Long idReunion;
+    Long idRapporteur;
     String Description;
-    String Description_corrigé;
-    String Description_resumé;
+    String Description_corrige;
+    String Description_resume;
 }

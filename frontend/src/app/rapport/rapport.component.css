@@ -1,17 +1,23 @@
-.form-container {
-  max-width: 600px;
-  margin: auto;
+/* src/app/rapport-list/rapport-list.component.css */
+.rapport-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.rapport-card {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: calc(33.333% - 40px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.form-header {
-  margin-bottom: 20px;
+
+.rapport-card h2, .rapport-card h3 {
+  margin: 0 0 10px 0;
 }
-.submit-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
+
+.rapport-card p {
+  margin: 10px 0;
 }

@@ -1,23 +1,12 @@
-<div class="form-container">
-  <h2 class="form-header text-center">Rapport Form</h2>
-  <form [formGroup]="RappFormgroup" (ngSubmit)="GetCorrection()">
-    <div class="form-group">
-      <label for="rapport">Rapport:</label>
-      <textarea id="rapport" formControlName="rapport" class="form-control" rows="5"></textarea>
-    </div>
-    <div>
-    <button type="submit" class="btn btn-primary submit-button" (submit)="GetResume()">Resume</button>
-    <button type="submit" class="btn btn-primary submit-button" (submit)="GetCorrection()">Correct</button>
+<div class="rapport-container">
+  <div *ngFor="let rapport of rapport" class="rapport-card">
+    <h2>Réunion ID: {{ (rapport.idReunion) }}</h2>
+    <h3>Rapporteur ID: {{ rapport.idRapporteur }}</h3>
+    <p><strong>Description:</strong> {{ rapport.description }}</p>
+    <p><strong>Résumé:</strong> {{ rapport.description_resume }}</p>
+    <p><strong>Description Corrigée:</strong> {{ rapport.description_corrige }}</p>
 
-    </div>
-  </form>
-  <div class="mt-4" *ngIf="resume">
-    <h4>Resume:</h4>
-    <p>{{resume}}</p>
+    <button mat-button (click)="editRapport(rapport.id_rapport)">Modifier</button>
   </div>
 
-  <div class="mt-4" *ngIf="correct">
-    <h4>Corrected:</h4>
-    <p>{{correct}}</p>
-  </div>
 </div>

@@ -5,6 +5,7 @@ import {Reunion} from "../reunion";
 import {User} from "../user";
 import {map, Observable} from "rxjs";
 import {InviteService} from "../invite.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-reunion',
@@ -19,7 +20,7 @@ export class ReunionComponent implements OnInit{
   user!: any;
   ids: any[] = []
 
-  constructor(private authService:AuthService,private reunionService:ReunionService,private inviteService:InviteService) {
+  constructor(private authService:AuthService,private reunionService:ReunionService,private inviteService:InviteService, private router :Router) {
   }
   ngOnInit() {
 
@@ -57,7 +58,11 @@ export class ReunionComponent implements OnInit{
       )
   }
 
+  editRapport(id_rapport: number) {
+    this.router.navigate(['/creerrapport'], { queryParams: { id: id_rapport } });  }
+
   modifierReunion(reunion: Reunion) {
 
   }
+
 }
