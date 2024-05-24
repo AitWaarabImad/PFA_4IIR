@@ -5,6 +5,7 @@ import {colors} from "@angular/cli/src/utilities/color";
 import {AuthService} from "../auth.service";
 import {ReunionService} from "../reunion.service";
 import {Reunion} from "../reunion";
+import {InviteService} from "../invite.service";
 
 @Component({
   selector: 'app-calendrier',
@@ -22,12 +23,9 @@ export class CalendrierComponent implements OnInit{
   events: CalendarEvent[] = [];
   ev!: CalendarEvent;
 
-
   protected readonly CalendarView = CalendarView;
 
-
-
-  constructor(private authService:AuthService,private reunionService:ReunionService) {
+  constructor(private authService:AuthService,private reunionService:ReunionService,private inviteService : InviteService) {
   }
   setView(view: CalendarView) {
     this.view = view;
@@ -35,16 +33,34 @@ export class CalendrierComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.reunionService.getReunionbyuserid(this.authService.getLoggedInUser().id_user).subscribe(reunions => {
+
+
+    const id_user = this.authService.getLoggedInUser().id_user;
+
+    this.reunionService.getReunionbyuserid(id_user).subscribe(reunions => {
       this.reunions = reunions;
-      this.events = this.reunions.map(reunion => ({
-        title: reunion.titre,
-        start: new Date(reunion.debutR),
-        end: new Date(reunion.finReu),
-        id: reunion.id_Re
-      }));
+    });
+    this.reunionService.getReunionbyrappid(id_user).subscribe(reunnions => {
+        this.reunions = this.reunions.concat(reunnions)
+      });
+    this.inviteService.getIdsofReu(id_user).subscribe(response => {
+
+      this.reunionService.getReubyid(response).subscribe(reunion => {
+        this.reunions = this.reunions.concat(reunion)
+        this.events = this.reunions.map(reunion => ({
+          title: reunion.titre,
+          start: new Date(reunion.debutR),
+          end: new Date(reunion.finReu),
+          id: reunion.id_Re
+        }))
+      })
     });
   }
+
+
+
+
+
 
   // Méthode pour afficher les détails de la réunion lorsque vous cliquez sur un jour
   showMeetingDetails(date: Date) {

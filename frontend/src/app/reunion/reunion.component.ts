@@ -19,6 +19,10 @@ export class ReunionComponent implements OnInit{
   organisateur!:any;
   user!: any;
   ids: any[] = []
+   isLoggedin!: boolean;
+   userRole: any;
+   name: any;
+   id_user: any;
 
   constructor(private authService:AuthService,private reunionService:ReunionService,private inviteService:InviteService, private router :Router) {
   }
@@ -47,6 +51,16 @@ export class ReunionComponent implements OnInit{
       },
       error: err => console.error('Failed to fetch IDs of reunions', err)
     });
+
+    this.authService.loggedInUser$.subscribe(user => {
+      this.isLoggedin = !!user; // If user exists, set to true, otherwise false
+      this.id_user = this.authService.getLoggedInUser().id_user;
+      this.userRole = this.authService.getRoleuser();
+      this.name = user.username
+    });
+
+
+
   }
 
   supprimerReunion(reunion: Reunion) {

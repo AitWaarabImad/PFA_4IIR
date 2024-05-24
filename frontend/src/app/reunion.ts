@@ -11,6 +11,7 @@ export class Reunion {
   nom_organisateur:string ="";
   nom_salle:string =" ";
   ids : number[] = [];
+  id_rapporteur !: number;
   //ID_user!:User[];
   //rapport!:string;
   //rapporteur!:User;

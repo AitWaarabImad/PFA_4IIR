@@ -31,6 +31,7 @@ export class CreerReunionComponent implements OnInit {
   nom_organisateur!: string;
   titre!: string;
   id_re!: any;
+  id_rapp!:number;
   TodayDate: any = Date.now();
 
   controlRapp = new FormControl('',Validators.required);
@@ -74,6 +75,7 @@ export class CreerReunionComponent implements OnInit {
       nom_salle: salleValue !== null ? salleValue : " ",
       nom_organisateur: this.authService.getLoggedInUser().nomComplet,
       ids:InviteValue,
+      id_rapporteur:this.id_rapp,
     };
 
     this.reunionService.CreerReunion(nouvelleReunion).subscribe(() => {

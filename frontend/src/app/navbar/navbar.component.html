@@ -12,10 +12,10 @@
       <button *ngIf="isLoggedin" routerLink="/Reunion" mat-button color="accent" style="margin-right:10px" >Mes reunion</button>
     </mat-list-item>
     <mat-list-item>
-      <button *ngIf="isLoggedin && (userRole=='Organisateur'||'Admin')"  routerLink="/CreerReunion" mat-button color="accent" style="margin-right:10px" >Creer reunion</button>
+      <button *ngIf="isLoggedin && (userRole=='Organisateur' || userRole=='Admin') "  routerLink="/CreerReunion" mat-button color="accent" style="margin-right:10px" >Creer reunion</button>
     </mat-list-item>
     <mat-list-item>
-      <button *ngIf="isLoggedin && (userRole=='Rapporteur'||'Admin')"  routerLink="/rapport" mat-button color="accent" style="margin-right:10px" >Mes rapports</button>
+      <button *ngIf="isLoggedin && (userRole=='Rapporteur' || userRole=='Admin') "  routerLink="/rapport" mat-button color="accent" style="margin-right:10px" >Mes rapports</button>
     </mat-list-item>
   </mat-menu>
 
